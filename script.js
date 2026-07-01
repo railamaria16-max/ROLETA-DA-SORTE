@@ -11,28 +11,54 @@ const fechar = document.getElementById("fechar");
 //=========================================
 // CONFIGURAÇÕES
 //=========================================
+const setores = [
 
-const premios = [
-    "🎁 Brinde Especial",
-    "😢 Tente Outra Vez",
-    "🎉 Brinde Surpresa",
-    "🧴 Brinde Rexona",
-    "🧼 Brinde Clear",
-    "❤️ Obrigado pela Participação",
-    "👜 Brinde Necessaire",
-    "🧼 Brinde Clear"
+    {
+        premio:"🎁 Brinde Especial",
+        angulo:314.5
+    },
+
+    {
+        premio:"😢 Tente Outra Vez",
+        angulo:359.4
+    },
+
+    {
+        premio:"🎉 Brinde Surpresa",
+        angulo:44.3
+    },
+
+    {
+        premio:"🧴 Brinde Rexona",
+        angulo:89.6
+    },
+
+    {
+        premio:"🧼 Brinde Clear",
+        angulo:134.8
+    },
+
+    {
+        premio:"❤️ Obrigado pela Participação",
+        angulo:180.1
+    },
+
+    {
+        premio:"👜 Brinde Necessaire",
+        angulo:224.9
+    },
+
+    {
+        premio:"🧼 Brinde Clear",
+        angulo:269.7
+    }
+
 ];
-
-// Quantidade de fatias
-const totalFatias = premios.length;
-
-// Graus por fatia
-const grausFatia = 360 / totalFatias;
+    
 
 // Controle
 let girando = false;
 let rotacaoAtual = 0;
-
 //=========================================
 // FUNÇÃO GIRAR
 //=========================================
@@ -46,23 +72,55 @@ function girarRoleta(){
     botao.disabled = true;
 
     popup.classList.remove("mostrar");
+//=========================
+// Escolhe um setor
+//=========================
+//====================================
+// Escolhe um prêmio
+//====================================
 
-    // Sorteia um prêmio
-    const indice = Math.floor(Math.random()*premios.length);
+const setor =
+setores[Math.floor(Math.random()*setores.length)];
 
-    // Centro da fatia
-    const centroFatia = indice * grausFatia + (grausFatia/2);
+//====================================
+// Quantas voltas dará
+//====================================
 
-    // Ponteiro está em cima
-    const destino = 360 - centroFatia;
+const voltas =
+(9 + Math.random()*3) * 360;
 
-    // Voltas
-    const voltas = (8 + Math.floor(Math.random()*4)) * 360;
+//====================================
+// Ângulo atual da roleta
+//====================================
 
-    rotacaoAtual += voltas + destino;
+const atual =
+((rotacaoAtual % 360)+360)%360;
 
-    roleta.style.transition =
-        "transform 8s cubic-bezier(.15,.92,.18,1)";
+//====================================
+// Ângulo desejado
+//====================================
+
+const destino =
+(360 - setor.angulo + 360)%360;
+
+//====================================
+// Diferença
+//====================================
+
+let diferenca =
+(destino-atual+360)%360;
+
+//====================================
+// Rotação final
+//====================================
+
+rotacaoAtual += voltas + diferenca;
+
+
+
+    
+ roleta.style.transition =
+"transform 7.8s cubic-bezier(.08,.96,.17,1)";
 
     roleta.style.transform =
         `rotate(${rotacaoAtual}deg)`;
@@ -70,7 +128,7 @@ function girarRoleta(){
     // Mostrar resultado
     setTimeout(()=>{
 
-        premioTexto.innerHTML = premios[indice];
+    premioTexto.innerHTML = setor.premio;
 
         popup.classList.add("mostrar");
 
