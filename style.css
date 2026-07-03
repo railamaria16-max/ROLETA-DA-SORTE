@@ -1,46 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roleta da Sorte</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Montserrat", sans-serif; background: linear-gradient(180deg, #0b3d91, #0a2d6e); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-<div class="container">
-    <header>
-        <h1>🎁 ROLETA DA SORTE</h1>
-        <p>Gire a roleta e descubra seu prêmio.</p>
-    </header>
+.roleta-container { position: relative; width: 600px; height: 600px; margin: 20px auto; }
 
-    <div class="roleta-container">
-        <div class="ponteiro"></div>
-        <div id="roleta">
-            <div class="setor s1"><div class="conteudo-setor"><span class="titulo-brinde">Brinde</span><img src="img/rexona.png" class="logo-setor"><span class="nome-produto">Rexona</span></div></div>
-            <div class="setor s2"><div class="conteudo-setor"><span>Tente Outra<br>Vez</span></div></div>
-            <div class="setor s3"><div class="conteudo-setor"><span class="titulo-brinde">Brinde</span><img src="img/omo.png" class="logo-setor"><span class="nome-produto">OMO</span></div></div>
-            <div class="setor s4"><div class="conteudo-setor"><span class="titulo-brinde">Brinde</span><img src="img/hellmanns.png" class="logo-setor"><span class="nome-produto">Hellmann's</span></div></div>
-            <div class="setor s5"><div class="conteudo-setor"><span class="titulo-brinde">Brinde</span><img src="img/clear.png" class="logo-setor"><span class="nome-produto">Clear</span></div></div>
-            <div class="setor s6"><div class="conteudo-setor"><span class="titulo-brinde">Brinde</span><img src="img/necessaire.png" class="logo-setor"><span class="nome-produto">Necessaire</span></div></div>
-            <div class="setor s7"><div class="conteudo-setor"><span>Brinde<br>Surpresa</span></div></div>
-            <div class="setor s8"><div class="conteudo-setor"><span>Tente Outra<br>Vez</span></div></div>
-            <div class="centro">GIRAR</div>
-        </div>
-    </div>
+#roleta { width: 100%; height: 100%; border-radius: 50%; border: 10px solid #FFD700; overflow: hidden; position: relative; 
+background: conic-gradient(#d71920 0deg 45deg, #123f90 45deg 90deg, #ffffff 90deg 135deg, #d71920 135deg 180deg, #123f90 180deg 225deg, #ffffff 225deg 270deg, #d71920 270deg 315deg, #123f90 315deg 360deg);
+transition: transform 6s cubic-bezier(.18,.86,.18,1); }
 
-    <button id="girar">GIRAR ROLETA</button>
-</div>
+.ponteiro { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 50px solid #e60000; z-index: 10; }
 
-<div id="popup">
-    <div class="popup-box">
-        <h2>🎉 Parabéns!</h2>
-        <h3 id="resultado"></h3>
-        <button id="fechar">Fechar</button>
-    </div>
-</div>
+.setor { position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; padding-top: 30px; transform-origin: center center; pointer-events: none; }
 
-<script src="script.js"></script>
-</body>
-</html>
+.conteudo-setor { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100px; gap: 2px; }
+
+.logo-setor { width: 70px !important; height: 70px !important; object-fit: contain; }
+
+.titulo-brinde { font-size: 12px; font-weight: 800; color: #FFD700; text-transform: uppercase; }
+
+.nome-produto { font-size: 14px; font-weight: 700; }
+
+.centro { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 100px; background: #123F90; border: 8px solid #FFD700; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 800; z-index: 5; pointer-events: none; }
+
+.s1 { transform: rotate(22.5deg); } .s1 .conteudo-setor { transform: rotate(-22.5deg); }
+.s2 { transform: rotate(67.5deg); } .s2 .conteudo-setor { transform: rotate(-67.5deg); }
+.s3 { transform: rotate(112.5deg); } .s3 .conteudo-setor { transform: rotate(-112.5deg); }
+.s4 { transform: rotate(157.5deg); } .s4 .conteudo-setor { transform: rotate(-157.5deg); }
+.s5 { transform: rotate(202.5deg); } .s5 .conteudo-setor { transform: rotate(-202.5deg); }
+.s6 { transform: rotate(247.5deg); } .s6 .conteudo-setor { transform: rotate(-247.5deg); }
+.s7 { transform: rotate(292.5deg); } .s7 .conteudo-setor { transform: rotate(-292.5deg); }
+.s8 { transform: rotate(337.5deg); } .s8 .conteudo-setor { transform: rotate(-337.5deg); }
+
+#girar { margin-top: 30px; padding: 15px 40px; font-size: 20px; background: #E60000; color: white; border: none; border-radius: 10px; cursor: pointer; }
+#popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 999; }
+#popup.ativo { display: flex; }
+.popup-box { background: white; padding: 30px; border-radius: 15px; color: black; text-align: center; }
