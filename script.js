@@ -13,19 +13,53 @@ const btnFechar = document.getElementById("fechar");
 // PRÊMIOS
 //========================================
 
-const premios = [
+const premios=[
 
-    "🎁 Brinde Rexona",
-    "😢 Tente Outra Vez",
-    "🎁 Brinde OMO",
-    "🎁 Brinde Hellmann's",
-    "🎁 Brinde Clear",
-    "👜 Necessaire",
-    "🎉 Brinde Surpresa",
-    "😢 Tente Outra Vez"
+{nome:"Rexona",cor:"branco"},
+
+{nome:"Tente Outra Vez",cor:"branco"},
+
+{nome:"OMO",cor:"vermelho"},
+
+{nome:"Hellmann's",cor:"branco"},
+
+{nome:"Clear",cor:"branco"},
+
+{nome:"Necessaire",cor:"azul"},
+
+{nome:"Surpresa",cor:"branco"},
+
+{nome:"Tente Outra Vez",cor:"branco"}
 
 ];
+const camada=document.getElementById("setores");
 
+function criarSetores(){
+
+    camada.innerHTML="";
+
+    premios.forEach((premio,i)=>{
+
+        const setor=document.createElement("div");
+
+        setor.className="setor "+premio.cor;
+
+        setor.innerHTML=premio.nome;
+
+        const angulo=i*45+22.5;
+
+        setor.style.transform=
+        `rotate(${angulo}deg)
+         translateY(-220px)
+         rotate(-${angulo}deg)`;
+
+        camada.appendChild(setor);
+
+    });
+
+}
+
+criarSetores();
 //========================================
 
 const TOTAL = premios.length;
