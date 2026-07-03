@@ -1,6 +1,6 @@
-/* ===========================
-   RESET
-=========================== */
+/*==================================
+RESET
+==================================*/
 
 *{
     margin:0;
@@ -14,6 +14,8 @@ body{
 
     background:#0B3D91;
 
+    color:#FFF;
+
     min-height:100vh;
 
     display:flex;
@@ -22,47 +24,27 @@ body{
 
     align-items:center;
 
-    color:#FFF;
-
 }
 
-/* ===========================
-   CONTAINER
-=========================== */
+/*==================================
+CONTAINER
+==================================*/
 
 .container{
+
+    text-align:center;
 
     width:100%;
 
     max-width:1200px;
 
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
     padding:30px;
 
 }
 
-/* ===========================
-   HEADER
-=========================== */
-
-header{
-
-    text-align:center;
-
-    margin-bottom:30px;
-
-}
-
-header h1{
+h1{
 
     font-size:48px;
-
-    font-weight:900;
 
     color:#FFD700;
 
@@ -70,81 +52,48 @@ header h1{
 
 }
 
-header p{
+p{
 
     font-size:20px;
 
-    font-weight:500;
+    margin-bottom:30px;
 
 }
 
-/* ===========================
-   ROLETA
-=========================== */
+/*==================================
+ROLETA
+==================================*/
 
 .roleta-container{
 
     position:relative;
 
-    width:650px;
+    width:620px;
 
-    height:650px;
+    height:620px;
 
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
+    margin:auto;
 
 }
-
-/* ===========================
-   PONTEIRO
-=========================== */
-
-.ponteiro{
-
-    position:absolute;
-
-    top:-15px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    width:0;
-
-    height:0;
-
-    border-left:25px solid transparent;
-
-    border-right:25px solid transparent;
-
-    border-top:60px solid #E60000;
-
-    z-index:999;
-
-}
-
-/* ===========================
-   ROLETA
-=========================== */
 
 #roleta{
 
     width:600px;
+
     height:600px;
 
     border-radius:50%;
-
-    border:12px solid #FFD700;
 
     position:relative;
 
     overflow:hidden;
 
-    background:
-    conic-gradient(
+    border:10px solid #FFD700;
+
+    transition:transform 6s cubic-bezier(.18,.85,.18,1);
+
+    background:conic-gradient(
+
         #d71920 0deg 45deg,
         #123f90 45deg 90deg,
         #ffffff 90deg 135deg,
@@ -153,32 +102,164 @@ header p{
         #ffffff 225deg 270deg,
         #d71920 270deg 315deg,
         #123f90 315deg 360deg
+
     );
 
-    transform-origin:center center;
+}
 
-    transition:transform 6s cubic-bezier(.17,.67,.17,1);
+/*==================================
+PONTEIRO
+==================================*/
+
+.ponteiro{
+
+    position:absolute;
+
+    left:50%;
+
+    top:-12px;
+
+    transform:translateX(-50%);
+
+    width:0;
+
+    height:0;
+
+    border-left:22px solid transparent;
+
+    border-right:22px solid transparent;
+
+    border-top:55px solid #e60000;
+
+    z-index:20;
 
 }
-/* ===========================
-   SETORES
-=========================== */
+
+/*==================================
+SETORES
+==================================*/
 
 .setor{
 
     position:absolute;
 
-    width:50%;
-
-    height:50%;
+    width:180px;
 
     left:50%;
 
     top:50%;
 
-    transform-origin:0% 0%;
+    margin-left:-90px;
 
-    clip-path:polygon(0 0,100% 0,0 100%);
+    text-align:center;
+
+    transform-origin:center -200px;
+
+    font-weight:800;
+
+    pointer-events:none;
+
+}
+
+.setor span{
+
+    display:block;
+
+    font-size:18px;
+
+    line-height:22px;
+
+}
+
+.s1{
+
+    transform:rotate(22.5deg) translateY(-250px) rotate(-22.5deg);
+
+    color:#FFF;
+
+}
+
+.s2{
+
+    transform:rotate(67.5deg) translateY(-250px) rotate(-67.5deg);
+
+    color:#FFF;
+
+}
+
+.s3{
+
+    transform:rotate(112.5deg) translateY(-250px) rotate(-112.5deg);
+
+    color:#D71920;
+
+}
+
+.s4{
+
+    transform:rotate(157.5deg) translateY(-250px) rotate(-157.5deg);
+
+    color:#FFF;
+
+}
+
+.s5{
+
+    transform:rotate(202.5deg) translateY(-250px) rotate(-202.5deg);
+
+    color:#FFF;
+
+}
+
+.s6{
+
+    transform:rotate(247.5deg) translateY(-250px) rotate(-247.5deg);
+
+    color:#123f90;
+
+}
+
+.s7{
+
+    transform:rotate(292.5deg) translateY(-250px) rotate(-292.5deg);
+
+    color:#FFF;
+
+}
+
+.s8{
+
+    transform:rotate(337.5deg) translateY(-250px) rotate(-337.5deg);
+
+    color:#FFF;
+
+}
+
+/*==================================
+CENTRO
+==================================*/
+
+.centro{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    width:120px;
+
+    height:120px;
+
+    margin-left:-60px;
+
+    margin-top:-60px;
+
+    border-radius:50%;
+
+    background:#123F90;
+
+    border:6px solid #FFD700;
 
     display:flex;
 
@@ -186,33 +267,17 @@ header p{
 
     align-items:center;
 
-}
+    font-size:22px;
 
-.setor span{
-
-    position:absolute;
-
-    top:70px;
-
-    left:95px;
-
-    width:170px;
-
-    text-align:center;
-
-    font-size:16px;
-
-    font-weight:700;
+    font-weight:800;
 
     color:#FFF;
 
-    transform-origin:center;
-
 }
 
-/* ===========================
-   BOTÃO
-=========================== */
+/*==================================
+BOTÃO
+==================================*/
 
 #girar{
 
@@ -224,9 +289,9 @@ header p{
 
     border:none;
 
-    border-radius:12px;
+    border-radius:10px;
 
-    background:#E60000;
+    background:#e60000;
 
     color:#FFF;
 
@@ -246,15 +311,9 @@ header p{
 
 }
 
-#girar:active{
-
-    transform:scale(.96);
-
-}
-
-/* ===========================
-   POPUP
-=========================== */
+/*==================================
+POPUP
+==================================*/
 
 #popup{
 
@@ -262,13 +321,13 @@ header p{
 
     inset:0;
 
+    background:rgba(0,0,0,.65);
+
     display:none;
 
     justify-content:center;
 
     align-items:center;
-
-    background:rgba(0,0,0,.6);
 
 }
 
@@ -278,23 +337,23 @@ header p{
 
 }
 
-.popup-content{
+.popup-box{
 
     background:#FFF;
 
     color:#222;
 
-    padding:40px;
+    padding:35px;
 
-    border-radius:18px;
+    border-radius:15px;
 
     text-align:center;
 
-    min-width:350px;
+    width:340px;
 
 }
 
-.popup-content h2{
+.popup-box h2{
 
     margin-bottom:20px;
 
@@ -302,11 +361,7 @@ header p{
 
 #resultado{
 
-    font-size:28px;
-
-    font-weight:800;
-
-    color:#E60000;
+    color:#D71920;
 
     margin-bottom:25px;
 
@@ -320,21 +375,19 @@ header p{
 
     border:none;
 
-    border-radius:10px;
+    border-radius:8px;
 
-    background:#0B3D91;
+    background:#123F90;
 
     color:#FFF;
-
-    font-size:18px;
 
     cursor:pointer;
 
 }
 
-/* ===========================
-   RESPONSIVO
-=========================== */
+/*==================================
+RESPONSIVO
+==================================*/
 
 @media(max-width:768px){
 
@@ -354,75 +407,10 @@ header p{
 
     }
 
-    header h1{
+    .centro{
 
-        font-size:34px;
-
-    }
-
-    header p{
-
-        font-size:16px;
+        transform:scale(.8);
 
     }
-
-}
-/*==================================
-SETORES
-==================================*/
-
-#setores{
-
-    position:absolute;
-
-    inset:0;
-
-    border-radius:50%;
-
-    pointer-events:none;
-
-}
-
-.setor{
-
-    position:absolute;
-
-    left:50%;
-
-    top:50%;
-
-    width:150px;
-
-    margin-left:-75px;
-
-    text-align:center;
-
-    font-weight:800;
-
-    font-size:18px;
-
-    user-select:none;
-
-}
-
-.setor.vermelho{
-
-    color:#D71920;
-
-}
-
-.setor.azul{
-
-    color:#123F90;
-
-}
-
-.setor.branco{
-
-    color:#FFFFFF;
-
-    text-shadow:
-
-    0 2px 4px rgba(0,0,0,.5);
 
 }
