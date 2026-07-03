@@ -43,7 +43,7 @@ function girarRoleta(){
     const indice = Math.floor(Math.random() * TOTAL);
 
     // centro do setor
-    const destino = 360 - (indice * ANGULO + ANGULO / 2);
+   const destino = 360 - (indice * ANGULO + ANGULO / 2) + 22.5;
 
     // entre 6 e 8 voltas
     const voltas = (6 + Math.floor(Math.random() * 3)) * 360;
