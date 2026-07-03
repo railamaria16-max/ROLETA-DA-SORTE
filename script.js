@@ -56,6 +56,38 @@ function girarRoleta(){
 
     popup.classList.remove("ativo");
 
+    // Entre 6 e 8 voltas completas
+    const voltas = (6 + Math.floor(Math.random()*3)) * 360;
+
+    // Ângulo aleatório
+    const sorteio = Math.random() * 360;
+
+    rotacaoAtual += voltas + sorteio;
+
+    roleta.style.transform = `rotate(${rotacaoAtual}deg)`;
+
+    setTimeout(()=>{
+
+        // Ângulo final da roleta
+        let angulo = rotacaoAtual % 360;
+
+        // Como o ponteiro está no topo
+        let ponteiro = (360 - angulo) % 360;
+
+        // Descobre qual setor ficou no ponteiro
+        let indice = Math.floor(ponteiro / 45);
+
+        resultado.textContent = premios[indice];
+
+        popup.classList.add("ativo");
+
+        botao.disabled = false;
+
+        girando = false;
+
+    },6000);
+
+}
     //-------------------------------------
     // SORTEIA O PRÊMIO
     //-------------------------------------
