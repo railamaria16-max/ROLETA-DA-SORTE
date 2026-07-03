@@ -3,88 +3,72 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Roleta da Sorte</title>
+    <title>Roleta da Sorte</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="fundo"></div>
-
 <div class="container">
 
-<header>
+    <header>
 
-<img src="img/logo.png" class="logo">
+        <h1>🎁 ROLETA DA SORTE</h1>
 
-<h1>ROLETA DA SORTE</h1>
+        <p>Gire a roleta e descubra seu prêmio!</p>
 
-<p>
+    </header>
 
-Clique em GIRAR para descobrir seu prêmio
+    <main>
 
-</p>
+        <div class="roleta-container">
 
-</header>
+            <!-- Ponteiro -->
+            <div class="ponteiro"></div>
 
-<div class="roleta-box">
+            <!-- Roleta -->
+            <div id="roleta">
 
-<div class="ponteiro"></div>
+                <!-- Os setores serão criados pelo JavaScript -->
 
-<svg id="roleta" viewBox="-400 -400 800 800">
+            </div>
 
-    <g id="shadow"></g>
+        </div>
 
-    <g id="wheel"></g>
+        <button id="girar">
+            GIRAR ROLETA
+        </button>
 
-    <g id="logos"></g>
-
-    <g id="center"></g>
-
-    <g id="overlay"></g>
-
-</svg>
+    </main>
 
 </div>
 
-<button id="girar">
-
-GIRAR ROLETA
-
-</button>
-
-</div>
+<!-- Popup -->
 
 <div id="popup">
 
-<div class="janela">
+    <div class="popup-content">
 
-<h2>
+        <h2>🎉 Parabéns!</h2>
 
-🎉 PARABÉNS
+        <p id="resultado"></p>
 
-</h2>
+        <button id="fechar">
+            Fechar
+        </button>
 
-<h3 id="premio"></h3>
-
-<button id="fechar">
-
-FECHAR
-
-</button>
-
-</div>
+    </div>
 
 </div>
 
