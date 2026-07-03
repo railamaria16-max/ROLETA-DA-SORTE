@@ -1,10 +1,32 @@
-#roleta {
+/* RESET E BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    font-family: "Montserrat", sans-serif; 
+    background: linear-gradient(180deg, #0b3d91, #0a2d6e); 
+    color: #fff; 
+    min-height: 100vh; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* ROLETA CONTAINER */
+.roleta-container {
     position: relative;
     width: 600px;
     height: 600px;
+    margin: 20px auto;
+}
+
+/* O elemento roleta em si */
+#roleta {
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    overflow: hidden;
     border: 10px solid #FFD700;
+    overflow: hidden; /* IMPORTANTE: Esconde tudo que sair do círculo */
+    position: relative;
     background: conic-gradient(
         #d71920 0deg 45deg, #123f90 45deg 90deg, 
         #ffffff 90deg 135deg, #d71920 135deg 180deg, 
@@ -14,21 +36,35 @@
     transition: transform 6s cubic-bezier(.18,.86,.18,1);
 }
 
-.setor {
+/* PONTEIRO */
+.ponteiro {
     position: absolute;
+    top: -20px;
     left: 50%;
-    top: 50%;
-    width: 170px;
-    height: 300px; /* Adicionado para garantir altura */
-    margin-left: -85px;
-    margin-top: -300px;
-    transform-origin: bottom center;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 50px solid #e60000;
+    z-index: 10;
 }
 
-/* Exemplo de posicionamento para s1 a s8 */
+/* SETORES */
+.setor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    transform-origin: center center;
+    pointer-events: none;
+}
+
+/* Ajuste fino dos setores */
 .s1 { transform: rotate(22.5deg); }
 .s2 { transform: rotate(67.5deg); }
 .s3 { transform: rotate(112.5deg); }
@@ -39,9 +75,50 @@
 .s8 { transform: rotate(337.5deg); }
 
 .conteudo-setor {
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100px;
+    width: 80px;
+    text-align: center;
 }
+
+.logo-setor {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 5px;
+}
+
+/* CENTRO DA ROLETA */
+.centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background: #123F90;
+    border: 5px solid #FFD700;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    z-index: 5;
+}
+
+/* BOTÃO E POPUP (estilos mantidos) */
+#girar {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 20px;
+    background: #E60000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+#popup.ativo { display: flex; }
+.popup-box { background: white; padding: 30px; border-radius: 15px; color: black; text-align: center; }
