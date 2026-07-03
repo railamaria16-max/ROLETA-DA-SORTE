@@ -3,64 +3,58 @@
 body { 
     font-family: "Montserrat", sans-serif; 
     background: linear-gradient(180deg, #0b3d91, #0a2d6e); 
-    color: #fff; 
-    min-height: 100vh; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
+    color: #fff; min-height: 100vh; 
+    display: flex; flex-direction: column; align-items: center; justify-content: center; 
 }
 
-/* ROLETA E CONTAINER */
-.roleta-container { position: relative; width: 600px; height: 600px; margin: 20px auto; }
+/* ROLETA CONTAINER - O centro de tudo */
+.roleta-container { position: relative; width: 600px; height: 600px; }
 
 #roleta { 
-    width: 100%; height: 100%; border-radius: 50%; border: 10px solid #FFD700; 
-    overflow: hidden; position: relative; 
-    background: conic-gradient(#d71920 0deg 45deg, #123f90 45deg 90deg, #ffffff 90deg 135deg, #d71920 135deg 180deg, #123f90 180deg 225deg, #ffffff 225deg 270deg, #d71920 270deg 315deg, #123f90 315deg 360deg);
+    width: 600px; height: 600px; border-radius: 50%; 
+    border: 10px solid #FFD700; position: relative; overflow: hidden;
+    background: conic-gradient(
+        #d71920 0deg 45deg, #123f90 45deg 90deg, #ffffff 90deg 135deg, 
+        #d71920 135deg 180deg, #123f90 180deg 225deg, #ffffff 225deg 270deg, 
+        #d71920 270deg 315deg, #123f90 315deg 360deg
+    );
     transition: transform 6s cubic-bezier(.18,.86,.18,1); 
 }
 
-.ponteiro { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 50px solid #e60000; z-index: 10; }
-
-/* ESTRUTURA DOS SETORES */
+/* FATIAS DA ROLETA */
 .setor { 
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-    display: flex; justify-content: center; padding-top: 50px; 
-    transform-origin: center center; pointer-events: none; 
+    position: absolute; width: 50%; height: 50%; top: 0; left: 50%; 
+    transform-origin: 0% 100%; display: flex; justify-content: center; 
+    padding-top: 30px; pointer-events: none; 
 }
 
 .conteudo-setor { 
     display: flex; flex-direction: column; align-items: center; 
-    width: 60px; text-align: center; gap: 5px;
+    width: 80px; text-align: center; gap: 5px;
 }
 
-.logo-setor { width: 40px !important; height: 40px !important; object-fit: contain; }
-
+/* IMAGENS E TEXTOS */
+.logo-setor { width: 50px !important; height: 50px !important; object-fit: contain; }
 .titulo-brinde { font-size: 10px; font-weight: 800; color: #FFD700; text-transform: uppercase; }
+.nome-produto { font-size: 12px; font-weight: 700; }
 
-.nome-produto { font-size: 11px; font-weight: 700; line-height: 1.1; }
+/* ROTAÇÃO DAS FATIAS - Isso alinha tudo corretamente */
+.s1 { transform: rotate(0deg); }   .s1 .conteudo-setor { transform: rotate(22.5deg); }
+.s2 { transform: rotate(45deg); }  .s2 .conteudo-setor { transform: rotate(67.5deg); }
+.s3 { transform: rotate(90deg); }  .s3 .conteudo-setor { transform: rotate(112.5deg); }
+.s4 { transform: rotate(135deg); } .s4 .conteudo-setor { transform: rotate(157.5deg); }
+.s5 { transform: rotate(180deg); } .s5 .conteudo-setor { transform: rotate(202.5deg); }
+.s6 { transform: rotate(225deg); } .s6 .conteudo-setor { transform: rotate(247.5deg); }
+.s7 { transform: rotate(270deg); } .s7 .conteudo-setor { transform: rotate(292.5deg); }
+.s8 { transform: rotate(315deg); } .s8 .conteudo-setor { transform: rotate(337.5deg); }
 
-/* CENTRO DA ROLETA */
-.centro { 
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-    width: 100px; height: 100px; background: #123F90; border: 8px solid #FFD700; 
-    border-radius: 50%; display: flex; justify-content: center; align-items: center; 
-    font-weight: 800; z-index: 5; pointer-events: none; 
+/* ELEMENTOS AUXILIARES */
+.ponteiro { 
+    position: absolute; top: -30px; left: 50%; transform: translateX(-50%); 
+    width: 0; height: 0; border-left: 20px solid transparent; 
+    border-right: 20px solid transparent; border-top: 50px solid #e60000; z-index: 10; 
 }
-
-/* ROTAÇÃO INVERTIDA (PARA NÃO FICAR DE CABEÇA PARA BAIXO) */
-.s1 { transform: rotate(22.5deg); } .s1 .conteudo-setor { transform: rotate(-22.5deg); }
-.s2 { transform: rotate(67.5deg); } .s2 .conteudo-setor { transform: rotate(-67.5deg); }
-.s3 { transform: rotate(112.5deg); } .s3 .conteudo-setor { transform: rotate(-112.5deg); }
-.s4 { transform: rotate(157.5deg); } .s4 .conteudo-setor { transform: rotate(-157.5deg); }
-.s5 { transform: rotate(202.5deg); } .s5 .conteudo-setor { transform: rotate(-202.5deg); }
-.s6 { transform: rotate(247.5deg); } .s6 .conteudo-setor { transform: rotate(-247.5deg); }
-.s7 { transform: rotate(292.5deg); } .s7 .conteudo-setor { transform: rotate(-292.5deg); }
-.s8 { transform: rotate(337.5deg); } .s8 .conteudo-setor { transform: rotate(-337.5deg); }
-
-/* BOTÃO E POPUP */
-#girar { margin-top: 30px; padding: 15px 40px; font-size: 20px; background: #E60000; color: white; border: none; border-radius: 10px; cursor: pointer; }
+#girar { margin-top: 30px; padding: 15px 40px; font-size: 20px; background: #E60000; border: none; border-radius: 10px; cursor: pointer; color: white; }
 #popup { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 999; }
 #popup.ativo { display: flex; }
 .popup-box { background: white; padding: 30px; border-radius: 15px; color: black; text-align: center; }
