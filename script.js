@@ -56,10 +56,9 @@ function desenharRoleta(){
     wheel.innerHTML="";
 
     setores.forEach((setor,index)=>{
+const inicio = -22.5 + index * ANGULO;
 
-        const inicio = index * ANGULO;
-
-        const fim = inicio + ANGULO;
+const fim = inicio + ANGULO;
 
         const p1 = ponto(inicio);
 
