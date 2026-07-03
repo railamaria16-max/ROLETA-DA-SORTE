@@ -49,8 +49,7 @@ body {
     border-top: 50px solid #e60000;
     z-index: 10;
 }
-
-/* SETORES */
+/* Posicionamento do Setor */
 .setor {
     position: absolute;
     top: 0;
@@ -59,55 +58,44 @@ body {
     bottom: 0;
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 30px; /* Ajuste a distância do topo */
     transform-origin: center center;
     pointer-events: none;
 }
 
-/* Ajuste fino dos setores */
-.s1 { transform: rotate(22.5deg); }
-.s2 { transform: rotate(67.5deg); }
-.s3 { transform: rotate(112.5deg); }
-.s4 { transform: rotate(157.5deg); }
-.s5 { transform: rotate(202.5deg); }
-.s6 { transform: rotate(247.5deg); }
-.s7 { transform: rotate(292.5deg); }
-.s8 { transform: rotate(337.5deg); }
-
+/* O "Pulo do Gato": O setor gira, mas o conteúdo dentro dele 
+   deve girar no sentido oposto para ficar reto */
 .conteudo-setor {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80px;
-    text-align: center;
-}
-/* FORÇA TOTAL: Isso ignora o tamanho original da imagem */
-.logo-setor {
-    width: 50px !important; 
-    height: 50px !important;
-    min-width: 50px !important;
-    min-height: 50px !important;
-    object-fit: contain !important;
-    display: block !important;
+    width: 100px;
 }
 
-/* CENTRO DA ROLETA */
-.centro {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    height: 100px;
-    background: #123F90;
-    border: 5px solid #FFD700;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 800;
-    z-index: 5;
-}
+/* Aqui aplicamos a rotação invertida em cada um */
+.s1 { transform: rotate(22.5deg); }
+.s1 .conteudo-setor { transform: rotate(-22.5deg); }
+
+.s2 { transform: rotate(67.5deg); }
+.s2 .conteudo-setor { transform: rotate(-67.5deg); }
+
+.s3 { transform: rotate(112.5deg); }
+.s3 .conteudo-setor { transform: rotate(-112.5deg); }
+
+.s4 { transform: rotate(157.5deg); }
+.s4 .conteudo-setor { transform: rotate(-157.5deg); }
+
+.s5 { transform: rotate(202.5deg); }
+.s5 .conteudo-setor { transform: rotate(-202.5deg); }
+
+.s6 { transform: rotate(247.5deg); }
+.s6 .conteudo-setor { transform: rotate(-247.5deg); }
+
+.s7 { transform: rotate(292.5deg); }
+.s7 .conteudo-setor { transform: rotate(-292.5deg); }
+
+.s8 { transform: rotate(337.5deg); }
+.s8 .conteudo-setor { transform: rotate(-337.5deg); }
 
 /* BOTÃO E POPUP (estilos mantidos) */
 #girar {
