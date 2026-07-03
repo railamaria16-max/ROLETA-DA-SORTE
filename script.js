@@ -1,296 +1,231 @@
-//=====================================================
+//========================================
 // ROLETA DA SORTE
-//=====================================================
+//========================================
 
+const wheel = document.getElementById("wheel");
 const roleta = document.getElementById("roleta");
+
 const botao = document.getElementById("girar");
+
 const popup = document.getElementById("popup");
-const premioTexto = document.getElementById("premio");
+const premio = document.getElementById("premio");
 const fechar = document.getElementById("fechar");
 
-//=========================================
-// CONFIGURAÇÕES
-//=========================================
+//========================================
+// CONFIGURAÇÃO DOS SETORES
+//========================================
+
 const setores = [
 
-    {
-        premio:"🎁 Brinde Especial",
-        angulo:314.5
-    },
+{
+nome:"🎁 Brinde Rexona",
+cor:"#d71920"
+},
 
-    {
-        premio:"😢 Tente Outra Vez",
-        angulo:359.4
-    },
+{
+nome:"😢 Tente Outra Vez",
+cor:"#0b2d73"
+},
 
-    {
-        premio:"🎉 Brinde Surpresa",
-        angulo:44.3
-    },
+{
+nome:"🎁 Brinde OMO",
+cor:"#ffffff",
+texto:"#d71920"
+},
 
-    {
-        premio:"🧴 Brinde Rexona",
-        angulo:89.6
-    },
+{
+nome:"🎁 Brinde Hellmann's",
+cor:"#d71920"
+},
 
-    {
-        premio:"🧼 Brinde Clear",
-        angulo:134.8
-    },
+{
+nome:"🎁 Brinde Clear",
+cor:"#0b2d73"
+},
 
-    {
-        premio:"❤️ Obrigado pela Participação",
-        angulo:180.1
-    },
+{
+nome:"🎁 Necessaire",
+cor:"#ffffff",
+texto:"#0b2d73"
+},
 
-    {
-        premio:"👜 Brinde Necessaire",
-        angulo:224.9
-    },
+{
+nome:"🎉 Brinde Surpresa",
+cor:"#d71920"
+},
 
-    {
-        premio:"🧼 Brinde Clear",
-        angulo:269.7
-    }
+{
+nome:"😢 Tente Outra Vez",
+cor:"#0b2d73"
+}
 
 ];
-    
 
-// Controle
-let girando = false;
-let rotacaoAtual = 0;
-//=========================================
-// FUNÇÃO GIRAR
-//=========================================
+//========================================
+// DESENHAR ROLETA
+//========================================
 
-function girarRoleta(){
+const total = setores.length;
 
-    if(girando) return;
+const angulo = 360 / total;
 
-    girando = true;
+const raio = 350;
 
-    botao.disabled = true;
+for(let i=0;i<total;i++){
 
-    popup.classList.remove("mostrar");
-//=========================
-// Escolhe um setor
-//=========================
-//====================================
-// Escolhe um prêmio
-//====================================
+    const inicio = i*angulo-90;
 
-const setor =
-setores[Math.floor(Math.random()*setores.length)];
+    const fim = inicio+angulo;
 
-//====================================
-// Quantas voltas dará
-//====================================
+    const x1 = raio*Math.cos(inicio*Math.PI/180);
+
+    const y1 = raio*Math.sin(inicio*Math.PI/180);
+
+    const x2 = raio*Math.cos(fim*Math.PI/180);
+
+    const y2 = raio*Math.sin(fim*Math.PI/180);
+
+    const path = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "path"
+    );
+
+    path.setAttribute(
+    "d",
+    `
+    M 0 0
+    L ${x1} ${y1}
+    A ${raio} ${raio} 0 0 1 ${x2} ${y2}
+    Z
+    `
+    );
+
+    path.setAttribute(
+    "fill",
+    setores[i].cor
+    );
+
+    path.setAttribute(
+    "stroke",
+    "white"
+    );
+
+    path.setAttribute(
+    "stroke-width",
+    "6"
+    );
+
+    wheel.appendChild(path);
+
+    //----------------------------------
+
+    const texto =
+    document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "text"
+    );
+
+    const meio =
+    inicio+angulo/2;
+
+    const tx =
+    210*Math.cos(meio*Math.PI/180);
+
+    const ty =
+    210*Math.sin(meio*Math.PI/180);
+
+    texto.setAttribute(
+    "x",
+    tx
+    );
+
+    texto.setAttribute(
+    "y",
+    ty
+    );
+
+    texto.setAttribute(
+    "fill",
+    setores[i].texto || "white"
+    );
+
+    texto.setAttribute(
+    "font-size",
+    "26"
+    );
+
+    texto.setAttribute(
+    "font-weight",
+    "800"
+    );
+
+    texto.setAttribute(
+    "text-anchor",
+    "middle"
+    );
+
+    texto.setAttribute(
+    "transform",
+    `rotate(${meio+90} ${tx} ${ty})`
+    );
+
+    texto.textContent =
+    setores[i].nome;
+
+    wheel.appendChild(texto);
+
+}
+
+//========================================
+// GIRAR
+//========================================
+
+let girando=false;
+
+let rotacao=0;
+
+botao.onclick=()=>{
+
+if(girando) return;
+
+girando=true;
+
+popup.classList.remove("mostrar");
+
+const indice =
+Math.floor(Math.random()*total);
+
+const centro =
+indice*angulo+angulo/2;
 
 const voltas =
-(9 + Math.random()*3) * 360;
+(8+Math.random()*4)*360;
 
-//====================================
-// Ângulo atual da roleta
-//====================================
+rotacao +=
+voltas+
+(360-centro);
 
-const atual =
-((rotacaoAtual % 360)+360)%360;
+wheel.style.transition=
+"transform 7s cubic-bezier(.18,.94,.14,1)";
 
-//====================================
-// Ângulo desejado
-//====================================
+wheel.style.transform=
+`rotate(${rotacao}deg)`;
 
-const destino =
-(360 - setor.angulo + 360)%360;
+setTimeout(()=>{
 
-//====================================
-// Diferença
-//====================================
+premio.innerHTML=
+setores[indice].nome;
 
-let diferenca =
-(destino-atual+360)%360;
+popup.classList.add("mostrar");
 
-//====================================
-// Rotação final
-//====================================
+girando=false;
 
-rotacaoAtual += voltas + diferenca;
-
-
-
-    
- roleta.style.transition =
-"transform 7.8s cubic-bezier(.08,.96,.17,1)";
-
-    roleta.style.transform =
-        `rotate(${rotacaoAtual}deg)`;
-
-    // Mostrar resultado
-    setTimeout(()=>{
-
-    premioTexto.innerHTML = setor.premio;
-
-        popup.classList.add("mostrar");
-
-        girando = false;
-
-        botao.disabled = false;
-
-    },8000);
+},7000);
 
 }
 
-//=========================================
-// BOTÕES
-//=========================================
+fechar.onclick=()=>{
 
-botao.addEventListener("click",girarRoleta);
-
-fechar.addEventListener("click",()=>{
-
-    popup.classList.remove("mostrar");
-
-});
-
-//=========================================
-// FECHAR POPUP CLICANDO FORA
-//=========================================
-
-popup.addEventListener("click",(e)=>{
-
-    if(e.target===popup){
-
-        popup.classList.remove("mostrar");
-
-    }
-
-});
-
-//=========================================
-// TECLA ESPAÇO GIRA
-//=========================================
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.code==="Space"){
-
-        e.preventDefault();
-
-        girarRoleta();
-
-    }
-
-});
-
-//=========================================
-// ENTER FECHA POPUP
-//=========================================
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Enter"){
-
-        popup.classList.remove("mostrar");
-
-    }
-
-});
-
-//=========================================
-// ESC FECHA POPUP
-//=========================================
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key==="Escape"){
-
-        popup.classList.remove("mostrar");
-
-    }
-
-});
-
-//=========================================
-// DUPLO CLIQUE NO LOGO = TELA CHEIA
-//=========================================
-
-const logo = document.querySelector(".logo");
-
-if(logo){
-
-    logo.addEventListener("dblclick",()=>{
-
-        if(!document.fullscreenElement){
-
-            document.documentElement.requestFullscreen();
-
-        }else{
-
-            document.exitFullscreen();
-
-        }
-
-    });
+popup.classList.remove("mostrar");
 
 }
-
-//=========================================
-// ANIMAÇÃO CONTÍNUA DA LUZ
-//=========================================
-
-const luz = document.querySelector(".luz");
-
-let brilho = 0;
-
-setInterval(()=>{
-
-    brilho += 0.02;
-
-    if(luz){
-
-        luz.style.transform =
-            `scale(${1+Math.sin(brilho)*0.03})`;
-
-    }
-
-},30);
-
-//=========================================
-// SOM (opcional)
-//=========================================
-
-// Para ativar basta colocar:
-// audio/spin.mp3
-// audio/winner.mp3
-
-const somGiro = new Audio("audio/spin.mp3");
-const somVitoria = new Audio("audio/winner.mp3");
-
-somGiro.volume = .5;
-somVitoria.volume = .6;
-
-botao.addEventListener("click",()=>{
-
-    somGiro.currentTime = 0;
-
-    somGiro.play().catch(()=>{});
-
-});
-
-roleta.addEventListener("transitionend",()=>{
-
-    somVitoria.play().catch(()=>{});
-
-});
-
-//=========================================
-// CONFETES (opcional)
-//=========================================
-
-// Depois iremos adicionar uma biblioteca
-// de confetes para deixar o efeito
-// igual às promoções.
-
-//=========================================
-// FIM
-//=========================================
