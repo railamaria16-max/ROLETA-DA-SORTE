@@ -1,6 +1,6 @@
-/*==================================
-RESET
-==================================*/
+/* ===========================
+   RESET
+=========================== */
 
 *{
     margin:0;
@@ -8,413 +8,356 @@ RESET
     box-sizing:border-box;
 }
 
-html,
-body{
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:'Montserrat',sans-serif;
-}
-
-/*==================================
-FUNDO
-==================================*/
-
 body{
 
-    background:
-    radial-gradient(circle at center,#194ea7 0%,#0d2f75 45%,#081d49 100%);
+    font-family:"Montserrat",sans-serif;
+
+    background:#0B3D91;
+
+    min-height:100vh;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
-    color:white;
+    color:#FFF;
 
 }
 
-.fundo{
-
-    position:fixed;
-
-    inset:0;
-
-    background:
-
-    radial-gradient(circle,#3d7df055 0%,transparent 55%);
-
-    animation:brilho 6s infinite alternate;
-
-    z-index:-1;
-
-}
-
-@keyframes brilho{
-
-0%{
-
-transform:scale(1);
-
-opacity:.45;
-
-}
-
-100%{
-
-transform:scale(1.35);
-
-opacity:.9;
-
-}
-
-}
-
-/*==================================
-CONTAINER
-==================================*/
+/* ===========================
+   CONTAINER
+=========================== */
 
 .container{
 
-width:100%;
+    width:100%;
 
-max-width:1400px;
+    max-width:1200px;
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
-
-}
-
-/*==================================
-LOGO
-==================================*/
-
-.logo{
-
-width:240px;
-
-margin-bottom:15px;
+    padding:30px;
 
 }
 
-/*==================================
-TÍTULO
-==================================*/
-
-h1{
-
-font-size:58px;
-
-font-weight:900;
-
-letter-spacing:2px;
-
-color:#FFD83D;
-
-text-shadow:
-
-0 0 20px rgba(255,220,0,.8);
-
-margin-bottom:10px;
-
-}
+/* ===========================
+   HEADER
+=========================== */
 
 header{
 
-text-align:center;
+    text-align:center;
 
-margin-bottom:20px;
+    margin-bottom:30px;
+
+}
+
+header h1{
+
+    font-size:48px;
+
+    font-weight:900;
+
+    color:#FFD700;
+
+    margin-bottom:10px;
 
 }
 
 header p{
 
-font-size:22px;
+    font-size:20px;
 
-font-weight:600;
-
-opacity:.95;
+    font-weight:500;
 
 }
 
-/*==================================
-ROLETA
-==================================*/
+/* ===========================
+   ROLETA
+=========================== */
 
-.roleta-box{
+.roleta-container{
 
-position:relative;
+    position:relative;
 
-width:720px;
+    width:650px;
 
-height:720px;
+    height:650px;
 
-display:flex;
+    display:flex;
 
-justify-content:center;
+    justify-content:center;
 
-align-items:center;
-
-}
-
-#roleta{
-
-width:100%;
-
-height:100%;
-
-filter:
-
-drop-shadow(0 0 35px rgba(0,0,0,.45));
-
-transition:
-
-transform 7s cubic-bezier(.17,.94,.16,1);
+    align-items:center;
 
 }
 
-/*==================================
-PONTEIRO
-==================================*/
+/* ===========================
+   PONTEIRO
+=========================== */
 
 .ponteiro{
 
-position:absolute;
+    position:absolute;
 
-top:-12px;
+    top:-15px;
 
-left:50%;
+    left:50%;
 
-transform:translateX(-50%);
+    transform:translateX(-50%);
 
-width:0;
+    width:0;
 
-height:0;
+    height:0;
 
-border-left:35px solid transparent;
+    border-left:25px solid transparent;
 
-border-right:35px solid transparent;
+    border-right:25px solid transparent;
 
-border-top:75px solid #e22020;
+    border-top:60px solid #E60000;
 
-filter:
-
-drop-shadow(0 4px 8px rgba(0,0,0,.45));
-
-z-index:20;
+    z-index:999;
 
 }
 
-/*==================================
-BOTÃO
-==================================*/
+/* ===========================
+   ROLETA
+=========================== */
+
+#roleta{
+
+    width:600px;
+
+    height:600px;
+
+    border-radius:50%;
+
+    position:relative;
+
+    overflow:hidden;
+
+    border:12px solid #FFD700;
+
+    background:#FFF;
+
+    transition:transform 6s cubic-bezier(.17,.67,.17,1);
+
+    box-shadow:
+
+        0 0 30px rgba(0,0,0,.4);
+
+}
+
+/* ===========================
+   SETORES
+=========================== */
+
+.setor{
+
+    position:absolute;
+
+    width:50%;
+
+    height:50%;
+
+    left:50%;
+
+    top:50%;
+
+    transform-origin:0% 0%;
+
+    clip-path:polygon(0 0,100% 0,0 100%);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.setor span{
+
+    position:absolute;
+
+    top:70px;
+
+    left:95px;
+
+    width:170px;
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#FFF;
+
+    transform-origin:center;
+
+}
+
+/* ===========================
+   BOTÃO
+=========================== */
 
 #girar{
 
-margin-top:35px;
+    margin-top:40px;
 
-width:360px;
+    width:280px;
 
-height:75px;
+    height:65px;
 
-border:none;
+    border:none;
 
-border-radius:18px;
+    border-radius:12px;
 
-background:
+    background:#E60000;
 
-linear-gradient(#ff4747,#c70000);
+    color:#FFF;
 
-font-size:34px;
+    font-size:24px;
 
-font-weight:900;
+    font-weight:800;
 
-color:white;
+    cursor:pointer;
 
-cursor:pointer;
-
-box-shadow:
-
-0 12px 0 #7a0000,
-
-0 0 25px rgba(255,0,0,.5);
-
-transition:.2s;
+    transition:.2s;
 
 }
 
 #girar:hover{
 
-transform:translateY(-4px);
-
-box-shadow:
-
-0 16px 0 #7a0000,
-
-0 0 40px rgba(255,0,0,.7);
+    transform:scale(1.05);
 
 }
 
 #girar:active{
 
-transform:translateY(8px);
-
-box-shadow:
-
-0 4px 0 #7a0000;
+    transform:scale(.96);
 
 }
 
-/*==================================
-POPUP
-==================================*/
+/* ===========================
+   POPUP
+=========================== */
 
 #popup{
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-background:rgba(0,0,0,.72);
+    display:none;
 
-display:none;
+    justify-content:center;
 
-justify-content:center;
+    align-items:center;
 
-align-items:center;
-
-z-index:999;
+    background:rgba(0,0,0,.6);
 
 }
 
-#popup.mostrar{
+#popup.ativo{
 
-display:flex;
-
-animation:fade .35s;
+    display:flex;
 
 }
 
-@keyframes fade{
+.popup-content{
 
-from{
+    background:#FFF;
 
-opacity:0;
+    color:#222;
 
-}
+    padding:40px;
 
-to{
+    border-radius:18px;
 
-opacity:1;
+    text-align:center;
 
-}
-
-}
-
-.janela{
-
-width:480px;
-
-padding:40px;
-
-background:white;
-
-border-radius:25px;
-
-text-align:center;
-
-color:#222;
-
-box-shadow:
-
-0 0 40px rgba(0,0,0,.35);
+    min-width:350px;
 
 }
 
-.janela h2{
+.popup-content h2{
 
-font-size:42px;
-
-margin-bottom:20px;
+    margin-bottom:20px;
 
 }
 
-#premio{
+#resultado{
 
-font-size:34px;
+    font-size:28px;
 
-font-weight:800;
+    font-weight:800;
 
-color:#d40000;
+    color:#E60000;
 
-margin-bottom:30px;
+    margin-bottom:25px;
 
 }
 
 #fechar{
 
-width:220px;
+    width:180px;
 
-height:60px;
+    height:50px;
 
-border:none;
+    border:none;
 
-border-radius:15px;
+    border-radius:10px;
 
-background:#0d2f75;
+    background:#0B3D91;
 
-color:white;
+    color:#FFF;
 
-font-size:22px;
+    font-size:18px;
 
-font-weight:700;
-
-cursor:pointer;
+    cursor:pointer;
 
 }
 
-/*==================================
-RESPONSIVO
-==================================*/
+/* ===========================
+   RESPONSIVO
+=========================== */
 
-@media(max-width:900px){
+@media(max-width:768px){
 
-.roleta-box{
+    .roleta-container{
 
-width:90vw;
+        width:90vw;
 
-height:90vw;
+        height:90vw;
 
-}
+    }
 
-.logo{
+    #roleta{
 
-width:180px;
+        width:90vw;
 
-}
+        height:90vw;
 
-h1{
+    }
 
-font-size:38px;
+    header h1{
 
-}
+        font-size:34px;
 
-header p{
+    }
 
-font-size:18px;
+    header p{
 
-}
+        font-size:16px;
 
-#girar{
-
-width:280px;
-
-font-size:28px;
-
-}
+    }
 
 }
