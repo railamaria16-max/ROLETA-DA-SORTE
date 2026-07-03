@@ -14,95 +14,185 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <h1>🎁 ROLETA DA SORTE</h1>
+        <!-- Cabeçalho -->
 
-    <p>Clique em girar e descubra seu prêmio.</p>
+        <header>
 
-    <div class="roleta-container">
+            <h1>🎁 ROLETA DA SORTE</h1>
 
-        <div class="ponteiro"></div>
+            <p>Gire a roleta e descubra seu prêmio.</p>
 
-        <div id="roleta">
+        </header>
 
-            <!-- Setor 1 -->
-            <div class="setor s1">
-                <span>Rexona</span>
+        <!-- Área da roleta -->
+
+        <div class="roleta-container">
+
+            <!-- Ponteiro -->
+
+            <div class="ponteiro"></div>
+
+            <!-- Roleta -->
+
+            <div id="roleta">
+
+                <!-- Setor 1 -->
+
+                <div class="setor s1">
+
+                    <div class="conteudo-setor">
+
+                        <img src="img/rexona.png" class="logo-setor">
+
+                        <span>Rexona</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 2 -->
+
+                <div class="setor s2">
+
+                    <div class="conteudo-setor">
+
+                        <span>Tente Outra<br>Vez</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 3 -->
+
+                <div class="setor s3">
+
+                    <div class="conteudo-setor">
+
+                        <img src="img/omo.png" class="logo-setor">
+
+                        <span>OMO</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 4 -->
+
+                <div class="setor s4">
+
+                    <div class="conteudo-setor">
+
+                        <img src="img/hellmanns.png" class="logo-setor">
+
+                        <span>Hellmann's</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 5 -->
+
+                <div class="setor s5">
+
+                    <div class="conteudo-setor">
+
+                        <img src="img/clear.png" class="logo-setor">
+
+                        <span>Clear</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 6 -->
+
+                <div class="setor s6">
+
+                    <div class="conteudo-setor">
+
+                        <img src="img/necessaire.png" class="logo-setor">
+
+                        <span>Necessaire</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 7 -->
+
+                <div class="setor s7">
+
+                    <div class="conteudo-setor">
+
+                        <span>Brinde<br>Surpresa</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Setor 8 -->
+
+                <div class="setor s8">
+
+                    <div class="conteudo-setor">
+
+                        <span>Tente Outra<br>Vez</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Centro -->
+
+                <div class="centro">
+
+                    GIRAR
+
+                </div>
+
             </div>
 
-            <!-- Setor 2 -->
-            <div class="setor s2">
-                <span>Tente Outra<br>Vez</span>
-            </div>
+        </div>
 
-            <!-- Setor 3 -->
-            <div class="setor s3">
-                <span>OMO</span>
-            </div>
+        <!-- Botão -->
 
-            <!-- Setor 4 -->
-            <div class="setor s4">
-                <span>Hellmann's</span>
-            </div>
+        <button id="girar">
 
-            <!-- Setor 5 -->
-            <div class="setor s5">
-                <span>Clear</span>
-            </div>
+            GIRAR ROLETA
 
-            <!-- Setor 6 -->
-            <div class="setor s6">
-                <span>Necessaire</span>
-            </div>
+        </button>
 
-            <!-- Setor 7 -->
-            <div class="setor s7">
-                <span>Surpresa</span>
-            </div>
+    </div>
 
-            <!-- Setor 8 -->
-            <div class="setor s8">
-                <span>Tente Outra<br>Vez</span>
-            </div>
+    <!-- Popup -->
 
-            <div class="centro">
-                GIRAR
-            </div>
+    <div id="popup">
+
+        <div class="popup-box">
+
+            <h2>🎉 Parabéns!</h2>
+
+            <h3 id="resultado"></h3>
+
+            <button id="fechar">
+
+                Fechar
+
+            </button>
 
         </div>
 
     </div>
 
-    <button id="girar">
-        GIRAR ROLETA
-    </button>
-
-</div>
-
-<div id="popup">
-
-    <div class="popup-box">
-
-        <h2>🎉 Parabéns!</h2>
-
-        <h3 id="resultado"></h3>
-
-        <button id="fechar">
-            Fechar
-        </button>
-
-    </div>
-
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
