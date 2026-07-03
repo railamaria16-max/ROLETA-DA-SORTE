@@ -9,7 +9,42 @@ body {
     justify-content: center; 
     min-height: 100vh;
 }
+body::before{
 
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(255,255,255,.20) 0%,
+    transparent 60%);
+
+}
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background-image:
+
+    radial-gradient(white 1px, transparent 1px);
+
+    background-size:45px 45px;
+
+    opacity:.10;
+
+}
 /* CONTAINER DA ROLETA */
 .roleta-container { 
     position: relative; 
@@ -17,6 +52,34 @@ body {
     height: 450px; 
     display: flex;
     justify-content: center;
+}
+.roleta-container::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:720px;
+
+    height:720px;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(255,215,0,.35) 0%,
+    rgba(255,215,0,.15) 45%,
+    transparent 70%);
+
+    z-index:-1;
+
 }
 
 /* O "PULO DO GATO": Tratamos a imagem como background do círculo */
