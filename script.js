@@ -1,6 +1,6 @@
-//=====================================
+//============================================
 // ROLETA DA SORTE
-//=====================================
+//============================================
 
 const roleta = document.getElementById("roleta");
 const botao = document.getElementById("girar");
@@ -8,32 +8,43 @@ const popup = document.getElementById("popup");
 const resultado = document.getElementById("resultado");
 const fechar = document.getElementById("fechar");
 
-//=====================================
-// PRÊMIOS
-//=====================================
+//============================================
+// PRÊMIOS (NA MESMA ORDEM DA ROLETA)
+//============================================
 
 const premios = [
 
     "Rexona",
+
     "Tente Outra Vez",
+
     "OMO",
+
     "Hellmann's",
+
     "Clear",
+
     "Necessaire",
+
     "Brinde Surpresa",
+
     "Tente Outra Vez"
 
 ];
 
-const totalSetores = premios.length;
-const anguloSetor = 360 / totalSetores;
+//============================================
+
+const TOTAL = premios.length;
+
+const ANGULO = 360 / TOTAL;
 
 let girando = false;
+
 let rotacaoAtual = 0;
 
-//=====================================
-// GIRAR ROLETA
-//=====================================
+//============================================
+// GIRAR
+//============================================
 
 function girarRoleta(){
 
@@ -45,80 +56,157 @@ function girarRoleta(){
 
     popup.classList.remove("ativo");
 
-    // Sorteia um setor
-    const indice = Math.floor(Math.random() * totalSetores);
+    //-------------------------------------
+    // SORTEIA O PRÊMIO
+    //-------------------------------------
 
-    // Centro do setor
-    const centro = indice * anguloSetor + anguloSetor / 2;
+    const indice = Math.floor(Math.random()*TOTAL);
 
-    // Ponteiro está em cima
+    //-------------------------------------
+    // CENTRO DA FATIA
+    //-------------------------------------
+
+    const centro = indice * ANGULO + ANGULO/2;
+
+    //-------------------------------------
+    // AJUSTE DO PONTEIRO
+    //-------------------------------------
+
     const destino = 360 - centro;
 
-    // Entre 6 e 8 voltas
-    const voltas = (6 + Math.floor(Math.random() * 3)) * 360;
+    //-------------------------------------
+    // VOLTAS
+    //-------------------------------------
+
+    const voltas = (6 + Math.floor(Math.random()*3))*360;
+
+    //-------------------------------------
 
     rotacaoAtual += voltas + destino;
 
-    roleta.style.transform = `rotate(${rotacaoAtual}deg)`;
+    //-------------------------------------
 
-    setTimeout(() => {
+    roleta.style.transform =
+    `rotate(${rotacaoAtual}deg)`;
 
-        resultado.textContent = premios[indice];
+    //-------------------------------------
+
+    setTimeout(()=>{
+
+        resultado.innerHTML = premios[indice];
 
         popup.classList.add("ativo");
 
-        girando = false;
-
         botao.disabled = false;
 
-    }, 6000);
+        girando = false;
+
+    },6000);
 
 }
 
-//=====================================
-// EVENTOS
-//=====================================
+//============================================
+// BOTÕES
+//============================================
 
-botao.addEventListener("click", girarRoleta);
+botao.addEventListener(
 
-fechar.addEventListener("click", () => {
+    "click",
 
-    popup.classList.remove("ativo");
+    girarRoleta
 
-});
+);
 
-popup.addEventListener("click", (e) => {
+fechar.addEventListener(
 
-    if(e.target === popup){
+    "click",
 
-        popup.classList.remove("ativo");
-
-    }
-
-});
-
-//=====================================
-// TECLAS
-//=====================================
-
-document.addEventListener("keydown", (e)=>{
-
-    if(e.code === "Space"){
-
-        e.preventDefault();
-
-        girarRoleta();
-
-    }
-
-});
-
-document.addEventListener("keydown",(e)=>{
-
-    if(e.key === "Escape"){
+    ()=>{
 
         popup.classList.remove("ativo");
 
     }
 
-});
+);
+
+//============================================
+// FECHAR CLICANDO FORA
+//============================================
+
+popup.addEventListener(
+
+    "click",
+
+    (e)=>{
+
+        if(e.target===popup){
+
+            popup.classList.remove("ativo");
+
+        }
+
+    }
+
+);
+
+//============================================
+// ESPAÇO GIRA
+//============================================
+
+document.addEventListener(
+
+    "keydown",
+
+    (e)=>{
+
+        if(e.code==="Space"){
+
+            e.preventDefault();
+
+            girarRoleta();
+
+        }
+
+    }
+
+);
+
+//============================================
+// ESC FECHA
+//============================================
+
+document.addEventListener(
+
+    "keydown",
+
+    (e)=>{
+
+        if(e.key==="Escape"){
+
+            popup.classList.remove("ativo");
+
+        }
+
+    }
+
+);
+
+//============================================
+// ENTER FECHA
+//============================================
+
+document.addEventListener(
+
+    "keydown",
+
+    (e)=>{
+
+        if(e.key==="Enter"){
+
+            popup.classList.remove("ativo");
+
+        }
+
+    }
+
+);
