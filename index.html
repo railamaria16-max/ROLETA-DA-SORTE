@@ -14,7 +14,7 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 </head>
 
@@ -22,47 +22,77 @@
 
 <div class="container">
 
-    <header>
+    <h1>🎁 ROLETA DA SORTE</h1>
 
-        <h1>🎁 ROLETA DA SORTE</h1>
+    <p>Clique em girar e descubra seu prêmio.</p>
 
-        <p>Gire a roleta e descubra seu prêmio!</p>
+    <div class="roleta-container">
 
-    </header>
+        <div class="ponteiro"></div>
 
-    <main>
+        <div id="roleta">
 
-        <div class="roleta-container">
+            <!-- Setor 1 -->
+            <div class="setor s1">
+                <span>Rexona</span>
+            </div>
 
-            <!-- Ponteiro -->
-            <div class="ponteiro"></div>
+            <!-- Setor 2 -->
+            <div class="setor s2">
+                <span>Tente Outra<br>Vez</span>
+            </div>
 
-            <!-- Roleta -->
-           <div id="roleta">
+            <!-- Setor 3 -->
+            <div class="setor s3">
+                <span>OMO</span>
+            </div>
 
-    <div id="setores"></div>
+            <!-- Setor 4 -->
+            <div class="setor s4">
+                <span>Hellmann's</span>
+            </div>
 
-</div>
+            <!-- Setor 5 -->
+            <div class="setor s5">
+                <span>Clear</span>
+            </div>
+
+            <!-- Setor 6 -->
+            <div class="setor s6">
+                <span>Necessaire</span>
+            </div>
+
+            <!-- Setor 7 -->
+            <div class="setor s7">
+                <span>Surpresa</span>
+            </div>
+
+            <!-- Setor 8 -->
+            <div class="setor s8">
+                <span>Tente Outra<br>Vez</span>
+            </div>
+
+            <div class="centro">
+                GIRAR
+            </div>
 
         </div>
 
-        <button id="girar">
-            GIRAR ROLETA
-        </button>
+    </div>
 
-    </main>
+    <button id="girar">
+        GIRAR ROLETA
+    </button>
 
 </div>
 
-<!-- Popup -->
-
 <div id="popup">
 
-    <div class="popup-content">
+    <div class="popup-box">
 
         <h2>🎉 Parabéns!</h2>
 
-        <p id="resultado"></p>
+        <h3 id="resultado"></h3>
 
         <button id="fechar">
             Fechar
