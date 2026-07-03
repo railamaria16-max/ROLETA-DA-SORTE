@@ -9,41 +9,24 @@ const resultado = document.getElementById("resultado");
 const fechar = document.getElementById("fechar");
 
 //============================================
-// PRÊMIOS (NA MESMA ORDEM DA ROLETA)
-//============================================
 
 const premios = [
-
     "Rexona",
-
     "Tente Outra Vez",
-
     "OMO",
-
     "Hellmann's",
-
     "Clear",
-
     "Necessaire",
-
     "Brinde Surpresa",
-
     "Tente Outra Vez"
-
 ];
 
-//============================================
-
 const TOTAL = premios.length;
-
 const ANGULO = 360 / TOTAL;
 
 let girando = false;
-
 let rotacaoAtual = 0;
 
-//============================================
-// GIRAR
 //============================================
 
 function girarRoleta(){
@@ -56,189 +39,71 @@ function girarRoleta(){
 
     popup.classList.remove("ativo");
 
-    // Entre 6 e 8 voltas completas
-    const voltas = (6 + Math.floor(Math.random()*3)) * 360;
+    // sorteia um setor
+    const indice = Math.floor(Math.random() * TOTAL);
 
-    // Ângulo aleatório
-    const sorteio = Math.random() * 360;
+    // centro do setor
+    const destino = 360 - (indice * ANGULO + ANGULO / 2);
 
-    rotacaoAtual += voltas + sorteio;
+    // entre 6 e 8 voltas
+    const voltas = (6 + Math.floor(Math.random() * 3)) * 360;
+
+    rotacaoAtual += voltas + destino;
 
     roleta.style.transform = `rotate(${rotacaoAtual}deg)`;
 
-    setTimeout(()=>{
-
-        // Ângulo final da roleta
-        let angulo = rotacaoAtual % 360;
-
-        // Como o ponteiro está no topo
-        let ponteiro = (360 - angulo) % 360;
-
-        // Descobre qual setor ficou no ponteiro
-        let indice = Math.floor(ponteiro / 45);
+    setTimeout(() => {
 
         resultado.textContent = premios[indice];
 
         popup.classList.add("ativo");
 
-        botao.disabled = false;
-
         girando = false;
 
-    },6000);
-
-}
-    //-------------------------------------
-    // SORTEIA O PRÊMIO
-    //-------------------------------------
-
-    const indice = Math.floor(Math.random()*TOTAL);
-
-    //-------------------------------------
-    // CENTRO DA FATIA
-    //-------------------------------------
-
-    const centro = indice * ANGULO + ANGULO/2;
-
-    //-------------------------------------
-    // AJUSTE DO PONTEIRO
-    //-------------------------------------
-
-    const destino = 360 - centro;
-
-    //-------------------------------------
-    // VOLTAS
-    //-------------------------------------
-
-    const voltas = (6 + Math.floor(Math.random()*3))*360;
-
-    //-------------------------------------
-
-    rotacaoAtual += voltas + destino;
-
-    //-------------------------------------
-
-    roleta.style.transform =
-    `rotate(${rotacaoAtual}deg)`;
-
-    //-------------------------------------
-
-    setTimeout(()=>{
-
-        resultado.innerHTML = premios[indice];
-
-        popup.classList.add("ativo");
-
         botao.disabled = false;
-
-        girando = false;
 
     },6000);
 
 }
 
 //============================================
-// BOTÕES
-//============================================
 
-botao.addEventListener(
+botao.addEventListener("click", girarRoleta);
 
-    "click",
+fechar.addEventListener("click",()=>{
 
-    girarRoleta
+    popup.classList.remove("ativo");
 
-);
+});
 
-fechar.addEventListener(
+popup.addEventListener("click",(e)=>{
 
-    "click",
-
-    ()=>{
+    if(e.target===popup){
 
         popup.classList.remove("ativo");
 
     }
 
-);
+});
 
-//============================================
-// FECHAR CLICANDO FORA
-//============================================
+document.addEventListener("keydown",(e)=>{
 
-popup.addEventListener(
+    if(e.code==="Space"){
 
-    "click",
+        e.preventDefault();
 
-    (e)=>{
-
-        if(e.target===popup){
-
-            popup.classList.remove("ativo");
-
-        }
+        girarRoleta();
 
     }
 
-);
+});
 
-//============================================
-// ESPAÇO GIRA
-//============================================
+document.addEventListener("keydown",(e)=>{
 
-document.addEventListener(
+    if(e.key==="Escape"){
 
-    "keydown",
-
-    (e)=>{
-
-        if(e.code==="Space"){
-
-            e.preventDefault();
-
-            girarRoleta();
-
-        }
+        popup.classList.remove("ativo");
 
     }
 
-);
-
-//============================================
-// ESC FECHA
-//============================================
-
-document.addEventListener(
-
-    "keydown",
-
-    (e)=>{
-
-        if(e.key==="Escape"){
-
-            popup.classList.remove("ativo");
-
-        }
-
-    }
-
-);
-
-//============================================
-// ENTER FECHA
-//============================================
-
-document.addEventListener(
-
-    "keydown",
-
-    (e)=>{
-
-        if(e.key==="Enter"){
-
-            popup.classList.remove("ativo");
-
-        }
-
-    }
-
-);
+});
