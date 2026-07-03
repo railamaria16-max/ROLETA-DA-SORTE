@@ -1,31 +1,20 @@
 const roleta = document.getElementById("roleta");
 const botao = document.getElementById("girar");
-const popup = document.getElementById("popup");
-const resultado = document.getElementById("resultado");
-const fechar = document.getElementById("fechar");
-
-const premios = ["Rexona", "Tente Outra Vez", "OMO", "Hellmann's", "Clear", "Necessaire", "Brinde Surpresa", "Tente Outra Vez"];
-let girando = false;
-let rotacaoTotal = 0;
+let rotacaoAtual = 0;
 
 botao.addEventListener("click", () => {
-    if (girando) return;
-    girando = true;
-    botao.disabled = true;
-
-    const sorteio = Math.floor(Math.random() * 8);
-    const anguloPorSetor = 360 / 8;
-    const destino = (sorteio * anguloPorSetor) + (anguloPorSetor / 2);
+    botao.disabled = true; // Impede clicar enquanto gira
     
-    rotacaoTotal += (5 * 360) + (360 - destino - (rotacaoTotal % 360));
-    roleta.style.transform = `rotate(${rotacaoTotal}deg)`;
-
+    // Sorteia um giro entre 5 e 10 voltas completas
+    const voltas = Math.floor(Math.random() * 5) + 5;
+    const anguloExtra = Math.floor(Math.random() * 360);
+    
+    rotacaoAtual += (voltas * 360) + anguloExtra;
+    
+    roleta.style.transform = `rotate(${rotacaoAtual}deg)`;
+    
+    // Libera o botão após o giro (5 segundos conforme o CSS)
     setTimeout(() => {
-        resultado.textContent = premios[sorteio];
-        popup.classList.add("ativo");
-        girando = false;
         botao.disabled = false;
-    }, 6050);
+    }, 5000);
 });
-
-fechar.addEventListener("click", () => popup.classList.remove("ativo"));
