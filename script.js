@@ -3,6 +3,7 @@
 //========================================
 
 const roleta = document.getElementById("roleta");
+console.log(roleta);
 const btnGirar = document.getElementById("girar");
 const popup = document.getElementById("popup");
 const resultado = document.getElementById("resultado");
