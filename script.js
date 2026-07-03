@@ -1,186 +1,92 @@
-//==================================================
+//=========================================================
 // ROLETA DA SORTE
-// VERSÃO 2.0
-// WHEEL ENGINE
-//==================================================
+// ETAPA 2
+//=========================================================
 
-const SVG = "http://www.w3.org/2000/svg";
+const SVG_NS = "http://www.w3.org/2000/svg";
 
-//==========================================
-// CONFIGURAÇÃO
-//==========================================
+const wheel = document.getElementById("wheel");
 
-const CONFIG = {
+const RAIO = 340;
 
-    raio:350,
+const setores = [
 
-    centro:0,
-
-    setores:8,
-
-    duracao:7000,
-
-    voltasMin:8,
-
-    voltasMax:11
-
-};
-
-//==========================================
-// CLASSE SETOR
-//==========================================
-
-class Setor{
-
-    constructor(id,nome,cor,texto,logo=null){
-
-        this.id=id;
-
-        this.nome=nome;
-
-        this.cor=cor;
-
-        this.texto=texto;
-
-        this.logo=logo;
-
-    }
-
-}
-
-//==========================================
-// DADOS DA ROLETA
-//==========================================
-
-const setores=[
-
-new Setor(
-
-1,
-
-"Brinde Rexona",
-
-"#d71920",
-
-"#ffffff",
-
-"img/rexona.png"
-
-),
-
-new Setor(
-
-2,
-
-"Tente Outra Vez",
-
-"#103b87",
-
-"#ffffff"
-
-),
-
-new Setor(
-
-3,
-
-"Brinde OMO",
-
-"#ffffff",
-
-"#d71920",
-
-"img/omo.png"
-
-),
-
-new Setor(
-
-4,
-
-"Brinde Hellmann's",
-
-"#d71920",
-
-"#ffffff",
-
-"img/hellmanns.png"
-
-),
-
-new Setor(
-
-5,
-
-"Brinde Clear",
-
-"#103b87",
-
-"#ffffff",
-
-"img/clear.png"
-
-),
-
-new Setor(
-
-6,
-
-"Necessaire",
-
-"#ffffff",
-
-"#103b87",
-
-"img/necessaire.png"
-
-),
-
-new Setor(
-
-7,
-
-"Brinde Surpresa",
-
-"#d71920",
-
-"#ffffff"
-
-),
-
-new Setor(
-
-8,
-
-"Tente Outra Vez",
-
-"#103b87",
-
-"#ffffff"
-
-)
+    { cor:"#d71920" },
+    { cor:"#123f90" },
+    { cor:"#ffffff" },
+    { cor:"#d71920" },
+    { cor:"#123f90" },
+    { cor:"#ffffff" },
+    { cor:"#d71920" },
+    { cor:"#123f90" }
 
 ];
 
-//==========================================
-// CLASSE ROLETA
-//==========================================
+const ANGULO = 360 / setores.length;
 
-class Wheel{
 
-    constructor(){
+//=========================================================
 
-        this.svg=document.getElementById("roleta");
+function criar(tipo){
 
-        this.group=document.getElementById("wheel");
+    return document.createElementNS(SVG_NS,tipo);
 
-        this.rotacao=0;
+}
 
-        this.anguloSetor=
-        360/setores.length;
+//=========================================================
+
+function ponto(angulo){
+
+    const rad = (angulo-90) * Math.PI / 180;
+
+    return{
+
+        x:Math.cos(rad)*RAIO,
+
+        y:Math.sin(rad)*RAIO
 
     }
 
 }
 
-const wheel=new Wheel();
+//=========================================================
+
+function desenharRoleta(){
+
+    wheel.innerHTML="";
+
+    setores.forEach((setor,index)=>{
+
+        const inicio = index * ANGULO;
+
+        const fim = inicio + ANGULO;
+
+        const p1 = ponto(inicio);
+
+        const p2 = ponto(fim);
+
+        const path = criar("path");
+
+        path.setAttribute(
+            "d",
+            `
+            M 0 0
+            L ${p1.x} ${p1.y}
+            A ${RAIO} ${RAIO} 0 0 1 ${p2.x} ${p2.y}
+            Z
+            `
+        );
+
+        path.setAttribute("fill",setor.cor);
+
+        path.setAttribute("stroke","#D4AF37");
+
+        path.setAttribute("stroke-width","6");
+
+        wheel.appendChild(path);
+
+    });
+
+}
+
+desenharRoleta();
