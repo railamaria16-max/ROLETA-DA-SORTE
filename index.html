@@ -1,130 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Roleta da Sorte</title>
-
     <link rel="stylesheet" href="style.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
 
 <div class="container">
-
     <header>
-
         <h1>🎁 ROLETA DA SORTE</h1>
-
         <p>Gire a roleta e descubra seu prêmio.</p>
-
     </header>
 
     <div class="roleta-container">
-
-        <!-- Ponteiro -->
         <div class="ponteiro"></div>
-
-        <!-- Roleta -->
         <div id="roleta">
-
-            <div class="centro">
-                GIRAR
-            </div>
-
-            <div class="setor setor1">
-                <div class="conteudo">
-                    <img src="img/rexona.png" class="logo">
-                    <span>Rexona</span>
-                </div>
-            </div>
-
-            <div class="setor setor2">
-                <div class="conteudo">
-                    <span>Tente Outra<br>Vez</span>
-                </div>
-            </div>
-
-            <div class="setor setor3">
-                <div class="conteudo">
-                    <img src="img/omo.png" class="logo">
-                    <span>OMO</span>
-                </div>
-            </div>
-
-            <div class="setor setor4">
-                <div class="conteudo">
-                    <img src="img/hellmanns.png" class="logo">
-                    <span>Hellmann's</span>
-                </div>
-            </div>
-
-            <div class="setor setor5">
-                <div class="conteudo">
-                    <img src="img/clear.png" class="logo">
-                    <span>Clear</span>
-                </div>
-            </div>
-
-            <div class="setor setor6">
-                <div class="conteudo">
-                    <img src="img/necessaire.png" class="logo">
-                    <span>Necessaire</span>
-                </div>
-            </div>
-
-            <div class="setor setor7">
-                <div class="conteudo">
-                    <span>Brinde<br>Surpresa</span>
-                </div>
-            </div>
-
-            <div class="setor setor8">
-                <div class="conteudo">
-                    <span>Tente Outra<br>Vez</span>
-                </div>
-            </div>
-
+            <div class="setor s1"><div class="conteudo-setor"><img src="img/rexona.png" class="logo-setor"><span>Rexona</span></div></div>
+            <div class="setor s2"><div class="conteudo-setor"><span>Tente Outra<br>Vez</span></div></div>
+            <div class="setor s3"><div class="conteudo-setor"><img src="img/omo.png" class="logo-setor"><span>OMO</span></div></div>
+            <div class="setor s4"><div class="conteudo-setor"><img src="img/hellmanns.png" class="logo-setor"><span>Hellmann's</span></div></div>
+            <div class="setor s5"><div class="conteudo-setor"><img src="img/clear.png" class="logo-setor"><span>Clear</span></div></div>
+            <div class="setor s6"><div class="conteudo-setor"><img src="img/necessaire.png" class="logo-setor"><span>Necessaire</span></div></div>
+            <div class="setor s7"><div class="conteudo-setor"><span>Brinde<br>Surpresa</span></div></div>
+            <div class="setor s8"><div class="conteudo-setor"><span>Tente Outra<br>Vez</span></div></div>
         </div>
-
     </div>
 
-    <button id="girar">
-        GIRAR ROLETA
-    </button>
-
+    <button id="girar">GIRAR ROLETA</button>
 </div>
 
-<!-- Popup -->
-
 <div id="popup">
-
     <div class="popup-box">
-
         <h2>🎉 Parabéns!</h2>
-
         <h3 id="resultado"></h3>
-
-        <button id="fechar">
-            Fechar
-        </button>
-
+        <button id="fechar">Fechar</button>
     </div>
-
 </div>
 
 <script src="script.js"></script>
-
 </body>
-
 </html>
