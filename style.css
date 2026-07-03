@@ -1,48 +1,44 @@
+/* RESET E BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 body { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    min-height: 100vh; 
-    background-color: #0a2d6e; 
-    margin: 0;
+    display: flex; flex-direction: column; align-items: center; 
+    justify-content: center; min-height: 100vh; background: #0a2d6e; 
+    margin: 0; 
 }
 
+/* Aumentei o tamanho aqui: de 450px para 600px */
 .roleta-container { 
     position: relative; 
     width: 600px; 
     height: 600px; 
+    margin-bottom: 10px; /* Reduzi a distância inferior */
 }
 
 #roleta { 
     width: 100%; 
     height: 100%; 
-    border-radius: 50%; /* Faz a imagem parecer redonda */
+    border-radius: 50%; 
     object-fit: cover; 
+    display: block;
     transition: transform 6s cubic-bezier(0.17, 0.67, 0.12, 0.99);
 }
 
+/* Ponteiro posicionado para o tamanho maior */
 .ponteiro { 
-    position: absolute; 
-    top: -40px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    width: 0; 
-    height: 0; 
-    border-left: 25px solid transparent; 
-    border-right: 25px solid transparent; 
-    border-top: 60px solid #ff0000; 
-    z-index: 10; 
+    position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0; border-left: 25px solid transparent; 
+    border-right: 25px solid transparent; border-top: 60px solid #ff0000; z-index: 10; 
 }
 
+/* Aproximando o botão: reduzi o margin-top */
 #girar { 
-    margin-top: 30px; 
+    margin-top: 20px; 
     padding: 15px 40px; 
-    font-size: 24px; 
+    font-size: 22px; 
     cursor: pointer; 
     background-color: #ff0000;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: bold;
 }
