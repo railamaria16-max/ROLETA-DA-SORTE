@@ -4,26 +4,23 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Roleta da Sorte</title>
-
-<link rel="stylesheet" href="style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="background"></div>
-  <div id="particles-js"></div>
-
-<div class="particles"></div>
+<div class="fundo"></div>
 
 <div class="container">
 
@@ -33,32 +30,59 @@
 
 <h1>ROLETA DA SORTE</h1>
 
-<p class="subtitulo">
+<p>
 
-Gire a roleta e descubra seu prêmio!
+Clique em GIRAR para descobrir seu prêmio
 
 </p>
 
 </header>
 
-<main>
+<div class="roleta-box">
 
-<div class="roleta-area">
+<div class="ponteiro"></div>
 
-<img
-src="img/fundo.png"
-class="luz">
+<svg
+id="roleta"
+viewBox="-400 -400 800 800">
 
-<div class="ponteiro">
+<g id="wheel">
 
-<img
-src="img/ponteiro.png">
+</g>
 
-</div>
+<circle
+cx="0"
+cy="0"
+r="95"
+fill="#0d2f75"
+stroke="#fff"
+stroke-width="8"></circle>
 
-<img
-src="img/roleta.png"
-id="roleta">
+<text
+x="0"
+y="-10"
+text-anchor="middle"
+fill="#fff"
+font-size="42"
+font-weight="900">
+
+ROLETA
+
+</text>
+
+<text
+x="0"
+y="42"
+text-anchor="middle"
+fill="#ffd33d"
+font-size="34"
+font-weight="900">
+
+DA SORTE
+
+</text>
+
+</svg>
 
 </div>
 
@@ -67,8 +91,6 @@ id="roleta">
 GIRAR ROLETA
 
 </button>
-
-</main>
 
 </div>
 
@@ -82,11 +104,7 @@ GIRAR ROLETA
 
 </h2>
 
-<p id="premio">
-
-BRINDE
-
-</p>
+<h3 id="premio"></h3>
 
 <button id="fechar">
 
@@ -97,12 +115,6 @@ FECHAR
 </div>
 
 </div>
-
-<!-- Biblioteca de Confetes -->
-<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
-<!-- Biblioteca de Partículas -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
 
 <script src="script.js"></script>
 
