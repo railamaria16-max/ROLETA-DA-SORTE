@@ -133,24 +133,39 @@ header p{
 #roleta{
 
     width:600px;
-
     height:600px;
 
     border-radius:50%;
+
+    border:12px solid #FFD700;
 
     position:relative;
 
     overflow:hidden;
 
-    border:12px solid #FFD700;
+    background:
+    conic-gradient(
 
-    background:#FFF;
+        #d71920 0deg 45deg,
 
-    transition:transform 6s cubic-bezier(.17,.67,.17,1);
+        #123f90 45deg 90deg,
 
-    box-shadow:
+        #ffffff 90deg 135deg,
 
-        0 0 30px rgba(0,0,0,.4);
+        #d71920 135deg 180deg,
+
+        #123f90 180deg 225deg,
+
+        #ffffff 225deg 270deg,
+
+        #d71920 270deg 315deg,
+
+        #123f90 315deg 360deg
+
+    );
+
+    transition:
+    transform 6s cubic-bezier(.17,.67,.17,1);
 
 }
 
