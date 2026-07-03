@@ -1,8 +1,6 @@
-/*==================================================
-ROULETA DA SORTE
-STYLE.CSS
-PARTE 1
-==================================================*/
+/*==================================
+RESET
+==================================*/
 
 *{
     margin:0;
@@ -10,38 +8,32 @@ PARTE 1
     box-sizing:border-box;
 }
 
-html{
-
+html,
+body{
     width:100%;
     height:100%;
-
+    overflow:hidden;
+    font-family:'Montserrat',sans-serif;
 }
+
+/*==================================
+FUNDO
+==================================*/
 
 body{
 
-    width:100%;
-    min-height:100vh;
-
-    font-family:'Montserrat',sans-serif;
-
-    overflow-x:hidden;
-
-    background:#062a63;
-
     background:
-    radial-gradient(circle at center,
-    #0b55c5 0%,
-    #083d8e 25%,
-    #062a63 60%,
-    #041c44 100%);
+    radial-gradient(circle at center,#194ea7 0%,#0d2f75 45%,#081d49 100%);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
     color:white;
 
 }
 
-/*=====================================*/
-
-.background{
+.fundo{
 
     position:fixed;
 
@@ -49,760 +41,353 @@ body{
 
     background:
 
-    radial-gradient(circle,
-    rgba(255,255,255,.05),
-    transparent 70%);
+    radial-gradient(circle,#3d7df055 0%,transparent 55%);
 
-    z-index:-10;
+    animation:brilho 6s infinite alternate;
 
-}
-
-/*=====================================*/
-
-.container{
-
-    width:100%;
-
-    max-width:1500px;
-
-    margin:auto;
-
-    padding:25px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
+    z-index:-1;
 
 }
-
-/*=====================================*/
-
-header{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    margin-top:15px;
-
-}
-
-/*=====================================*/
-
-.logo{
-
-    width:340px;
-
-    max-width:90%;
-
-    user-select:none;
-
-    pointer-events:none;
-
-}
-
-/*=====================================*/
-
-h1{
-
-    margin-top:20px;
-
-    font-size:70px;
-
-    font-weight:900;
-
-    letter-spacing:3px;
-
-    text-align:center;
-
-    color:#ffd34a;
-
-    text-shadow:
-
-    0 0 8px #fff,
-
-    0 0 20px rgba(255,210,0,.7),
-
-    0 0 40px rgba(255,210,0,.3);
-
-}
-
-/*=====================================*/
-
-.subtitulo{
-
-    margin-top:10px;
-
-    font-size:25px;
-
-    color:white;
-
-    font-weight:600;
-
-    text-align:center;
-
-}
-
-/*=====================================*/
-
-main{
-
-    margin-top:30px;
-
-    width:100%;
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-}
-
-/*=====================================*/
-
-.roleta-area{
-
-    position:relative;
-
-    width:820px;
-
-    height:820px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-}
-
-/*=====================================*/
-
-.luz{
-
-    position:absolute;
-
-    width:930px;
-
-    opacity:.70;
-
-    animation:
-
-    brilho 3s infinite alternate;
-
-}
-
-/*=====================================*/
-
-#roleta{
-
-    position:absolute;
-
-    width:760px;
-
-    transition:
-    transform 8s cubic-bezier(.16,.95,.15,1);
-
-    filter:
-
-    drop-shadow(0 0 20px rgba(0,0,0,.45))
-
-    drop-shadow(0 0 50px rgba(0,120,255,.20));
-
-    z-index:2;
-
-}
-
-/*=====================================*/
-
-.ponteiro{
-
-    position:absolute;
-
-    top:-5px;
-
-    left:50%;
-
-    transform:translateX(-50%);
-
-    z-index:999;
-
-}
-
-.ponteiro img{
-
-    width:95px;
-
-    filter:
-
-    drop-shadow(0 0 12px rgba(0,0,0,.7));
-
-}
-
-/*=====================================*/
-
-#girar{
-
-    margin-top:30px;
-
-    width:430px;
-
-    height:95px;
-
-    border:none;
-
-    border-radius:20px;
-
-    cursor:pointer;
-
-    font-size:42px;
-
-    font-weight:800;
-
-    color:white;
-
-    background:
-
-    linear-gradient(
-    180deg,
-    #ff4d4d,
-    #e41818);
-
-    box-shadow:
-
-    inset 0 3px 0 rgba(255,255,255,.45),
-
-    0 8px 0 #870000,
-
-    0 18px 40px rgba(0,0,0,.40);
-
-    transition:.25s;
-
-}
-
-/*=====================================*/
-
-#girar:hover{
-
-    transform:scale(1.05);
-
-}
-
-/*=====================================*/
-
-#girar:active{
-
-    transform:scale(.96);
-
-}
-
-/*=====================================*/
-
-#girar:disabled{
-
-    opacity:.6;
-
-    cursor:not-allowed;
-
-}
-
-/*=====================================*/
-
-#popup{
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:rgba(0,0,0,.65);
-
-    backdrop-filter:blur(8px);
-
-    z-index:99999;
-
-}
-
-/*=====================================*/
-
-.janela{
-
-    width:520px;
-
-    background:white;
-
-    border-radius:25px;
-
-    padding:40px;
-
-    text-align:center;
-
-    box-shadow:
-
-    0 20px 60px rgba(0,0,0,.45);
-
-}
-
-/*=====================================*/
-
-.janela h2{
-
-    font-size:48px;
-
-    color:#e31919;
-
-}
-
-/*=====================================*/
-
-#premio{
-
-    margin-top:25px;
-
-    font-size:34px;
-
-    font-weight:700;
-
-    color:#003c9b;
-
-}
-
-/*=====================================*/
-
-#fechar{
-
-    margin-top:35px;
-
-    width:240px;
-
-    height:65px;
-
-    border:none;
-
-    border-radius:14px;
-
-    background:#e31919;
-
-    color:white;
-
-    font-size:26px;
-
-    font-weight:700;
-
-    cursor:pointer;
-
-}
-/*==================================================
-STYLE.CSS
-PARTE 2
-ANIMAÇÕES • RESPONSIVIDADE • EFEITOS
-==================================================*/
-
-
-/*=========================
-ANIMAÇÕES
-=========================*/
 
 @keyframes brilho{
 
-    0%{
+0%{
 
-        transform:scale(1);
+transform:scale(1);
 
-        opacity:.55;
-
-        filter:blur(0px);
-
-    }
-
-    100%{
-
-        transform:scale(1.08);
-
-        opacity:.95;
-
-        filter:blur(2px);
-
-    }
+opacity:.45;
 
 }
 
-@keyframes popup{
+100%{
 
-    0%{
+transform:scale(1.35);
 
-        opacity:0;
-
-        transform:scale(.65);
-
-    }
-
-    70%{
-
-        transform:scale(1.06);
-
-    }
-
-    100%{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
+opacity:.9;
 
 }
 
-@keyframes pulse{
+}
 
-    0%{
+/*==================================
+CONTAINER
+==================================*/
 
-        transform:scale(1);
+.container{
 
-    }
+width:100%;
 
-    50%{
+max-width:1400px;
 
-        transform:scale(1.03);
+display:flex;
 
-    }
+flex-direction:column;
 
-    100%{
+align-items:center;
 
-        transform:scale(1);
-
-    }
+justify-content:center;
 
 }
 
-@keyframes aparecer{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(40px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
-@keyframes flutuar{
-
-    0%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-8px);
-
-    }
-
-    100%{
-
-        transform:translateY(0);
-
-    }
-
-}
-
-
-/*=========================
-EFEITOS
-=========================*/
+/*==================================
+LOGO
+==================================*/
 
 .logo{
 
-    animation:
+width:240px;
 
-    aparecer .8s ease,
-
-    flutuar 4s ease-in-out infinite;
+margin-bottom:15px;
 
 }
+
+/*==================================
+TÍTULO
+==================================*/
 
 h1{
 
-    animation:
+font-size:58px;
 
-    aparecer .9s ease;
+font-weight:900;
+
+letter-spacing:2px;
+
+color:#FFD83D;
+
+text-shadow:
+
+0 0 20px rgba(255,220,0,.8);
+
+margin-bottom:10px;
+
+}
+
+header{
+
+text-align:center;
+
+margin-bottom:20px;
 
 }
 
-.subtitulo{
+header p{
 
-    animation:
+font-size:22px;
 
-    aparecer 1.1s ease;
+font-weight:600;
+
+opacity:.95;
+
+}
+
+/*==================================
+ROLETA
+==================================*/
+
+.roleta-box{
+
+position:relative;
+
+width:720px;
+
+height:720px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
 
 }
 
-.roleta-area{
+#roleta{
 
-    animation:
+width:100%;
 
-    aparecer 1.2s ease;
+height:100%;
+
+filter:
+
+drop-shadow(0 0 35px rgba(0,0,0,.45));
+
+transition:
+
+transform 7s cubic-bezier(.17,.94,.16,1);
 
 }
+
+/*==================================
+PONTEIRO
+==================================*/
+
+.ponteiro{
+
+position:absolute;
+
+top:-12px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:0;
+
+height:0;
+
+border-left:35px solid transparent;
+
+border-right:35px solid transparent;
+
+border-top:75px solid #e22020;
+
+filter:
+
+drop-shadow(0 4px 8px rgba(0,0,0,.45));
+
+z-index:20;
+
+}
+
+/*==================================
+BOTÃO
+==================================*/
 
 #girar{
 
-    animation:
+margin-top:35px;
 
-    pulse 2.5s infinite;
+width:360px;
+
+height:75px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+
+linear-gradient(#ff4747,#c70000);
+
+font-size:34px;
+
+font-weight:900;
+
+color:white;
+
+cursor:pointer;
+
+box-shadow:
+
+0 12px 0 #7a0000,
+
+0 0 25px rgba(255,0,0,.5);
+
+transition:.2s;
 
 }
 
 #girar:hover{
 
-    box-shadow:
+transform:translateY(-4px);
 
-    inset 0 3px 0 rgba(255,255,255,.4),
+box-shadow:
 
-    0 10px 0 #830000,
+0 16px 0 #7a0000,
 
-    0 22px 45px rgba(0,0,0,.55);
+0 0 40px rgba(255,0,0,.7);
+
+}
+
+#girar:active{
+
+transform:translateY(8px);
+
+box-shadow:
+
+0 4px 0 #7a0000;
+
+}
+
+/*==================================
+POPUP
+==================================*/
+
+#popup{
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.72);
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:999;
 
 }
 
 #popup.mostrar{
 
-    display:flex;
+display:flex;
+
+animation:fade .35s;
 
 }
 
-#popup.mostrar .janela{
+@keyframes fade{
 
-    animation:popup .45s ease;
+from{
 
-}
-
-
-/*=========================
-SCROLL
-=========================*/
-
-::-webkit-scrollbar{
-
-    width:10px;
+opacity:0;
 
 }
 
-::-webkit-scrollbar-thumb{
+to{
 
-    background:#ffcc00;
-
-    border-radius:20px;
+opacity:1;
 
 }
-
-::-webkit-scrollbar-track{
-
-    background:#04214e;
-
-}
-
-
-/*=========================
-SELEÇÃO
-=========================*/
-
-::selection{
-
-    background:#ffd000;
-
-    color:#00163b;
-
-}
-
-
-/*=========================
-RESPONSIVO
-=========================*/
-
-@media(max-width:1400px){
-
-.roleta-area{
-
-width:700px;
-
-height:700px;
-
-}
-
-#roleta{
-
-width:640px;
-
-}
-
-.luz{
-
-width:760px;
-
-}
-
-}
-
-
-@media(max-width:1200px){
-
-.logo{
-
-width:280px;
-
-}
-
-h1{
-
-font-size:54px;
-
-}
-
-.subtitulo{
-
-font-size:22px;
-
-}
-
-.roleta-area{
-
-width:620px;
-
-height:620px;
-
-}
-
-#roleta{
-
-width:560px;
-
-}
-
-.luz{
-
-width:680px;
-
-}
-
-#girar{
-
-width:360px;
-
-height:85px;
-
-font-size:34px;
-
-}
-
-}
-
-
-@media(max-width:900px){
-
-.logo{
-
-width:220px;
-
-}
-
-h1{
-
-font-size:42px;
-
-}
-
-.subtitulo{
-
-font-size:18px;
-
-}
-
-.roleta-area{
-
-width:520px;
-
-height:520px;
-
-}
-
-#roleta{
-
-width:470px;
-
-}
-
-.luz{
-
-width:560px;
-
-}
-
-.ponteiro img{
-
-width:75px;
-
-}
-
-#girar{
-
-width:310px;
-
-height:75px;
-
-font-size:28px;
 
 }
 
 .janela{
 
-width:90%;
+width:480px;
 
-padding:30px;
+padding:40px;
+
+background:white;
+
+border-radius:25px;
+
+text-align:center;
+
+color:#222;
+
+box-shadow:
+
+0 0 40px rgba(0,0,0,.35);
 
 }
 
 .janela h2{
 
-font-size:38px;
+font-size:42px;
+
+margin-bottom:20px;
 
 }
 
 #premio{
 
-font-size:28px;
+font-size:34px;
+
+font-weight:800;
+
+color:#d40000;
+
+margin-bottom:30px;
 
 }
 
+#fechar{
+
+width:220px;
+
+height:60px;
+
+border:none;
+
+border-radius:15px;
+
+background:#0d2f75;
+
+color:white;
+
+font-size:22px;
+
+font-weight:700;
+
+cursor:pointer;
+
 }
 
+/*==================================
+RESPONSIVO
+==================================*/
 
-@media(max-width:650px){
+@media(max-width:900px){
 
-.container{
+.roleta-box{
 
-padding:10px;
+width:90vw;
+
+height:90vw;
 
 }
 
@@ -814,108 +399,22 @@ width:180px;
 
 h1{
 
-font-size:34px;
+font-size:38px;
 
 }
 
-.subtitulo{
+header p{
 
-font-size:16px;
-
-}
-
-.roleta-area{
-
-width:380px;
-
-height:380px;
-
-}
-
-#roleta{
-
-width:340px;
-
-}
-
-.luz{
-
-width:420px;
-
-}
-
-.ponteiro img{
-
-width:60px;
+font-size:18px;
 
 }
 
 #girar{
 
-width:260px;
-
-height:65px;
-
-font-size:24px;
-
-}
-
-}
-
-
-@media(max-width:430px){
-
-.roleta-area{
-
-width:300px;
-
-height:300px;
-
-}
-
-#roleta{
-
-width:270px;
-
-}
-
-.luz{
-
-width:330px;
-
-}
-
-.logo{
-
-width:150px;
-
-}
-
-h1{
+width:280px;
 
 font-size:28px;
 
 }
 
-.subtitulo{
-
-font-size:14px;
-
 }
-
-#girar{
-
-width:220px;
-
-height:58px;
-
-font-size:20px;
-
-}
-
-}
-
-
-/*=========================
-FIM DO CSS
-=========================*/
