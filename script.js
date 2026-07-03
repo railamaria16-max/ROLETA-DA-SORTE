@@ -4,7 +4,7 @@
 
 const roleta = document.getElementById("roleta");
 console.log(roleta);
-const btnGirar = document.getElementById("girar");
+btnGirar.onclick = girar;
 const popup = document.getElementById("popup");
 const resultado = document.getElementById("resultado");
 const btnFechar = document.getElementById("fechar");
