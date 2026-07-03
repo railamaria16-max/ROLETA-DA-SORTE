@@ -1,91 +1,135 @@
-//=========================================================
+//========================================
 // ROLETA DA SORTE
-// ETAPA 2
-//=========================================================
+//========================================
 
-const SVG_NS = "http://www.w3.org/2000/svg";
+const roleta = document.getElementById("roleta");
+const btnGirar = document.getElementById("girar");
+const popup = document.getElementById("popup");
+const resultado = document.getElementById("resultado");
+const btnFechar = document.getElementById("fechar");
 
-const wheel = document.getElementById("wheel");
+//========================================
+// PRÊMIOS
+//========================================
 
-const RAIO = 340;
+const premios = [
 
-const setores = [
-
-    { cor:"#d71920" },
-    { cor:"#123f90" },
-    { cor:"#ffffff" },
-    { cor:"#d71920" },
-    { cor:"#123f90" },
-    { cor:"#ffffff" },
-    { cor:"#d71920" },
-    { cor:"#123f90" }
+    "🎁 Brinde Rexona",
+    "😢 Tente Outra Vez",
+    "🎁 Brinde OMO",
+    "🎁 Brinde Hellmann's",
+    "🎁 Brinde Clear",
+    "👜 Necessaire",
+    "🎉 Brinde Surpresa",
+    "😢 Tente Outra Vez"
 
 ];
 
-const ANGULO = 360 / setores.length;
+//========================================
 
+const TOTAL = premios.length;
+const ANGULO = 360 / TOTAL;
 
-//=========================================================
+let girando = false;
+let rotacaoAtual = 0;
 
-function criar(tipo){
+//========================================
 
-    return document.createElementNS(SVG_NS,tipo);
+function girar(){
+
+    if(girando) return;
+
+    girando = true;
+
+    btnGirar.disabled = true;
+
+    popup.classList.remove("ativo");
+
+    //------------------------------------
+    // Sorteio
+    //------------------------------------
+
+    const indice = Math.floor(Math.random() * TOTAL);
+
+    //------------------------------------
+    // Centro do setor
+    //------------------------------------
+
+    const centro = indice * ANGULO + ANGULO / 2;
+
+    //------------------------------------
+    // Ponteiro está em cima
+    //------------------------------------
+
+    const destino = 360 - centro;
+
+    //------------------------------------
+    // Voltas
+    //------------------------------------
+
+    const voltas = (6 + Math.floor(Math.random() * 4)) * 360;
+
+    //------------------------------------
+
+    rotacaoAtual += voltas + destino;
+
+    roleta.style.transform =
+        `rotate(${rotacaoAtual}deg)`;
+
+    //------------------------------------
+
+    setTimeout(()=>{
+
+        resultado.textContent = premios[indice];
+
+        popup.classList.add("ativo");
+
+        girando = false;
+
+        btnGirar.disabled = false;
+
+    },6000);
 
 }
 
-//=========================================================
+//========================================
 
-function ponto(angulo){
+btnGirar.addEventListener("click",girar);
 
-    const rad = (angulo-90) * Math.PI / 180;
+btnFechar.addEventListener("click",()=>{
 
-    return{
+    popup.classList.remove("ativo");
 
-        x:Math.cos(rad)*RAIO,
+});
 
-        y:Math.sin(rad)*RAIO
+popup.addEventListener("click",(e)=>{
+
+    if(e.target===popup){
+
+        popup.classList.remove("ativo");
 
     }
 
-}
+});
 
-//=========================================================
+document.addEventListener("keydown",(e)=>{
 
-function desenharRoleta(){
+    if(e.code==="Space"){
 
-    wheel.innerHTML="";
+        e.preventDefault();
 
-    setores.forEach((setor,index)=>{
-const inicio = -22.5 + index * ANGULO;
+        girar();
 
-const fim = inicio + ANGULO;
+    }
 
-        const p1 = ponto(inicio);
+});
 
-        const p2 = ponto(fim);
+document.addEventListener("keydown",(e)=>{
 
-        const path = criar("path");
+    if(e.key==="Escape"){
 
-        path.setAttribute(
-            "d",
-            `
-            M 0 0
-            L ${p1.x} ${p1.y}
-            A ${RAIO} ${RAIO} 0 0 1 ${p2.x} ${p2.y}
-            Z
-            `
-        );
+        popup.classList.remove("ativo");
 
-        path.setAttribute("fill",setor.cor);
+    }
 
-        path.setAttribute("stroke","#D4AF37");
-
-        path.setAttribute("stroke-width","6");
-
-        wheel.appendChild(path);
-
-    });
-
-}
-
-desenharRoleta();
+});
