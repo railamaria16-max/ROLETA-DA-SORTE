@@ -1,47 +1,58 @@
-/* RESET E BASE */
+/* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* FUNDO AZUL E CENTRALIZAÇÃO */
 body { 
-    display: flex; flex-direction: column; align-items: center; 
-    justify-content: center; min-height: 100vh; background: #0a2d6e; 
-    margin: 0; 
+    background-color: #0a2d6e; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 100vh; 
+    margin: 0;
+    font-family: sans-serif;
 }
 
-/* Aumentei o tamanho aqui: de 450px para 600px */
 /* CONTAINER DA ROLETA */
 .roleta-container { 
     position: relative; 
-    width: 750px; /* Aumentado para 750px */
-    height: 750px; /* Mantido igual para manter o círculo perfeito */
-    margin-bottom: 20px; 
+    width: 750px; 
+    height: 750px; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
 }
 
+/* ROLETA COM BORDA E LUZ (SHADOW) */
 #roleta { 
     width: 100%; 
     height: 100%; 
     border-radius: 50%; 
+    border: 15px solid #FFD700; /* Borda dourada */
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.6), 0 0 100px rgba(255, 215, 0, 0.3); /* Efeito de Luz */
     object-fit: cover; 
     display: block;
     transition: transform 6s cubic-bezier(0.17, 0.67, 0.12, 0.99);
 }
 
-/* Ajuste do ponteiro para acompanhar o tamanho maior */
+/* PONTEIRO */
 .ponteiro { 
     position: absolute; 
-    top: -50px; /* Ajustado para ficar logo acima da nova roleta */
+    top: -55px; 
     left: 50%; 
     transform: translateX(-50%);
     width: 0; 
     height: 0; 
     border-left: 30px solid transparent; 
     border-right: 30px solid transparent; 
-    border-top: 70px solid #ff0000; /* Ponteiro um pouco maior */
+    border-top: 70px solid #ff0000; 
     z-index: 10; 
 }
 
-/* Aproximando o botão de girar */
+/* BOTÃO DE GIRAR */
 #girar { 
-    margin-top: 20px; 
-    padding: 20px 60px; /* Botão ligeiramente maior para combinar */
+    margin-top: 40px; 
+    padding: 20px 60px; 
     font-size: 26px; 
     cursor: pointer; 
     background-color: #ff0000;
@@ -49,4 +60,5 @@ body {
     border: none;
     border-radius: 12px;
     font-weight: bold;
+    text-transform: uppercase;
 }
