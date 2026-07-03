@@ -1,231 +1,186 @@
-//========================================
+//==================================================
 // ROLETA DA SORTE
-//========================================
+// VERSÃO 2.0
+// WHEEL ENGINE
+//==================================================
 
-const wheel = document.getElementById("wheel");
-const roleta = document.getElementById("roleta");
+const SVG = "http://www.w3.org/2000/svg";
 
-const botao = document.getElementById("girar");
+//==========================================
+// CONFIGURAÇÃO
+//==========================================
 
-const popup = document.getElementById("popup");
-const premio = document.getElementById("premio");
-const fechar = document.getElementById("fechar");
+const CONFIG = {
 
-//========================================
-// CONFIGURAÇÃO DOS SETORES
-//========================================
+    raio:350,
 
-const setores = [
+    centro:0,
 
-{
-nome:"🎁 Brinde Rexona",
-cor:"#d71920"
-},
+    setores:8,
 
-{
-nome:"😢 Tente Outra Vez",
-cor:"#0b2d73"
-},
+    duracao:7000,
 
-{
-nome:"🎁 Brinde OMO",
-cor:"#ffffff",
-texto:"#d71920"
-},
+    voltasMin:8,
 
-{
-nome:"🎁 Brinde Hellmann's",
-cor:"#d71920"
-},
+    voltasMax:11
 
-{
-nome:"🎁 Brinde Clear",
-cor:"#0b2d73"
-},
+};
 
-{
-nome:"🎁 Necessaire",
-cor:"#ffffff",
-texto:"#0b2d73"
-},
+//==========================================
+// CLASSE SETOR
+//==========================================
 
-{
-nome:"🎉 Brinde Surpresa",
-cor:"#d71920"
-},
+class Setor{
 
-{
-nome:"😢 Tente Outra Vez",
-cor:"#0b2d73"
+    constructor(id,nome,cor,texto,logo=null){
+
+        this.id=id;
+
+        this.nome=nome;
+
+        this.cor=cor;
+
+        this.texto=texto;
+
+        this.logo=logo;
+
+    }
+
 }
+
+//==========================================
+// DADOS DA ROLETA
+//==========================================
+
+const setores=[
+
+new Setor(
+
+1,
+
+"Brinde Rexona",
+
+"#d71920",
+
+"#ffffff",
+
+"img/rexona.png"
+
+),
+
+new Setor(
+
+2,
+
+"Tente Outra Vez",
+
+"#103b87",
+
+"#ffffff"
+
+),
+
+new Setor(
+
+3,
+
+"Brinde OMO",
+
+"#ffffff",
+
+"#d71920",
+
+"img/omo.png"
+
+),
+
+new Setor(
+
+4,
+
+"Brinde Hellmann's",
+
+"#d71920",
+
+"#ffffff",
+
+"img/hellmanns.png"
+
+),
+
+new Setor(
+
+5,
+
+"Brinde Clear",
+
+"#103b87",
+
+"#ffffff",
+
+"img/clear.png"
+
+),
+
+new Setor(
+
+6,
+
+"Necessaire",
+
+"#ffffff",
+
+"#103b87",
+
+"img/necessaire.png"
+
+),
+
+new Setor(
+
+7,
+
+"Brinde Surpresa",
+
+"#d71920",
+
+"#ffffff"
+
+),
+
+new Setor(
+
+8,
+
+"Tente Outra Vez",
+
+"#103b87",
+
+"#ffffff"
+
+)
 
 ];
 
-//========================================
-// DESENHAR ROLETA
-//========================================
+//==========================================
+// CLASSE ROLETA
+//==========================================
 
-const total = setores.length;
+class Wheel{
 
-const angulo = 360 / total;
+    constructor(){
 
-const raio = 350;
+        this.svg=document.getElementById("roleta");
 
-for(let i=0;i<total;i++){
+        this.group=document.getElementById("wheel");
 
-    const inicio = i*angulo-90;
+        this.rotacao=0;
 
-    const fim = inicio+angulo;
+        this.anguloSetor=
+        360/setores.length;
 
-    const x1 = raio*Math.cos(inicio*Math.PI/180);
-
-    const y1 = raio*Math.sin(inicio*Math.PI/180);
-
-    const x2 = raio*Math.cos(fim*Math.PI/180);
-
-    const y2 = raio*Math.sin(fim*Math.PI/180);
-
-    const path = document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "path"
-    );
-
-    path.setAttribute(
-    "d",
-    `
-    M 0 0
-    L ${x1} ${y1}
-    A ${raio} ${raio} 0 0 1 ${x2} ${y2}
-    Z
-    `
-    );
-
-    path.setAttribute(
-    "fill",
-    setores[i].cor
-    );
-
-    path.setAttribute(
-    "stroke",
-    "white"
-    );
-
-    path.setAttribute(
-    "stroke-width",
-    "6"
-    );
-
-    wheel.appendChild(path);
-
-    //----------------------------------
-
-    const texto =
-    document.createElementNS(
-    "http://www.w3.org/2000/svg",
-    "text"
-    );
-
-    const meio =
-    inicio+angulo/2;
-
-    const tx =
-    210*Math.cos(meio*Math.PI/180);
-
-    const ty =
-    210*Math.sin(meio*Math.PI/180);
-
-    texto.setAttribute(
-    "x",
-    tx
-    );
-
-    texto.setAttribute(
-    "y",
-    ty
-    );
-
-    texto.setAttribute(
-    "fill",
-    setores[i].texto || "white"
-    );
-
-    texto.setAttribute(
-    "font-size",
-    "26"
-    );
-
-    texto.setAttribute(
-    "font-weight",
-    "800"
-    );
-
-    texto.setAttribute(
-    "text-anchor",
-    "middle"
-    );
-
-    texto.setAttribute(
-    "transform",
-    `rotate(${meio+90} ${tx} ${ty})`
-    );
-
-    texto.textContent =
-    setores[i].nome;
-
-    wheel.appendChild(texto);
+    }
 
 }
 
-//========================================
-// GIRAR
-//========================================
-
-let girando=false;
-
-let rotacao=0;
-
-botao.onclick=()=>{
-
-if(girando) return;
-
-girando=true;
-
-popup.classList.remove("mostrar");
-
-const indice =
-Math.floor(Math.random()*total);
-
-const centro =
-indice*angulo+angulo/2;
-
-const voltas =
-(8+Math.random()*4)*360;
-
-rotacao +=
-voltas+
-(360-centro);
-
-wheel.style.transition=
-"transform 7s cubic-bezier(.18,.94,.14,1)";
-
-wheel.style.transform=
-`rotate(${rotacao}deg)`;
-
-setTimeout(()=>{
-
-premio.innerHTML=
-setores[indice].nome;
-
-popup.classList.add("mostrar");
-
-girando=false;
-
-},7000);
-
-}
-
-fechar.onclick=()=>{
-
-popup.classList.remove("mostrar");
-
-}
+const wheel=new Wheel();
