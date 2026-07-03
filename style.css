@@ -145,30 +145,21 @@ header p{
 
     background:
     conic-gradient(
-
         #d71920 0deg 45deg,
-
         #123f90 45deg 90deg,
-
         #ffffff 90deg 135deg,
-
         #d71920 135deg 180deg,
-
         #123f90 180deg 225deg,
-
         #ffffff 225deg 270deg,
-
         #d71920 270deg 315deg,
-
         #123f90 315deg 360deg
-
     );
 
-    transition:
-    transform 6s cubic-bezier(.17,.67,.17,1);
+    transform-origin:center center;
+
+    transition:transform 6s cubic-bezier(.17,.67,.17,1);
 
 }
-
 /* ===========================
    SETORES
 =========================== */
